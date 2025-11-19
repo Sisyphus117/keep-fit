@@ -9,4 +9,14 @@
     color: #e4e4e7;
     font-family: "Roboto", sans-serif;
   }
+  input,
+  textarea,
+  select {
+    @apply border-zinc-500 bg-zinc-700 px-2 text-zinc-200;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply border-blue-500 ring-1 ring-blue-500;
+  }
 }

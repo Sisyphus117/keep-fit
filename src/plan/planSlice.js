@@ -17,7 +17,7 @@ const planSlice = createSlice({
     },
     set(state, action) {
       state.items = action.payload.items;
-      state.startTime = action.payload.startTime;
+      state.startTime = action.payload.startTime.toISOString();
       state.duration = action.payload.duration;
     },
   },

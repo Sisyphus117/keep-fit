@@ -1,29 +1,41 @@
 import { useState } from "react";
 import Button from "../ui/Button";
 import { useDispatch } from "react-redux";
-import { set } from "./planSlice";
+import { add } from "./recordsSlice";
 
-function PlanForm() {
+function AddRecord() {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    items: "",
-    startDate: "",
-    duration: "",
+    item: "",
+    duration: 0,
+    calories: 0,
   });
+
   function handleChange(e) {
     const { id, value } = e.target;
+    if (!isNaN(+value) && +value < 0) {
+      return;
+    }
     setFormData((prev) => ({ ...prev, [id]: value }));
   }
+
   function clearForm() {
     setFormData({
-      items: "",
-      startDate: "",
-      duration: "",
+      item: "",
+      duration: 0,
+      calories: 0,
     });
   }
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(set(formData));
+    const isoStr = new Date().toISOString();
+    const submittedData = {
+      ...formData,
+      id: isoStr,
+      time: isoStr,
+    };
+    dispatch(add(submittedData));
     clearForm();
   }
   return (
@@ -32,24 +44,18 @@ function PlanForm() {
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="contents">
-        <label className="w-20">Items</label>
-        <input
+        <label className="w-20">Item</label>
+        <select
           required
-          type="text"
-          id="items"
-          value={formData.items}
+          id="item"
+          value={formData.item}
           onChange={handleChange}
-        ></input>
-      </div>
-      <div className="contents">
-        <label className="w-20">Start Date</label>
-        <input
-          required
-          type="date"
-          id="startDate"
-          value={formData.startDate}
-          onChange={handleChange}
-        ></input>
+        >
+          <option value="">Please select an item</option>
+          <option value="swim">Swim</option>
+          <option value="jogging">Jogging</option>
+          <option value="cycling">Cycling</option>
+        </select>
       </div>
       <div className="contents">
         <label className="w-20">Duration</label>
@@ -61,6 +67,16 @@ function PlanForm() {
           onChange={handleChange}
         ></input>
       </div>
+      <div className="contents">
+        <label className="w-20">Calories</label>
+        <input
+          required
+          type="number"
+          id="calories"
+          value={formData.calories}
+          onChange={handleChange}
+        ></input>
+      </div>
       <div className="col-span-full flex justify-end">
         <Button type="submit">Submit</Button>
       </div>
@@ -68,4 +84,4 @@ function PlanForm() {
   );
 }
 
-export default PlanForm;
+export default AddRecord;
