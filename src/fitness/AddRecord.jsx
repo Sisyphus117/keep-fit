@@ -1,15 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../ui/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { add } from "./recordsSlice";
+import { fetchCaloriesBurnedData } from "./caloriesFetch";
 
 function AddRecord() {
   const dispatch = useDispatch();
+  const { weight } = useSelector((store) => store.user);
+
   const [formData, setFormData] = useState({
     item: "",
     duration: 0,
     calories: 0,
   });
+
+  useEffect(() => {
+    const { item, duration } = formData;
+    if (!item || duration === 0) {
+      return;
+    }
+    const getCalorise = async function () {
+      const result = await fetchCaloriesBurnedData({
+        activity: item,
+        weight,
+        duration,
+      });
+      return result;
+    };
+
+    getCalorise().then((calories) =>
+      setFormData((prev) => ({ ...prev, calories: calories })),
+    );
+  }, [formData.duration, formData.item, weight]);
 
   function handleChange(e) {
     const { id, value } = e.target;
@@ -52,8 +74,8 @@ function AddRecord() {
           onChange={handleChange}
         >
           <option value="">Please select an item</option>
-          <option value="swim">Swim</option>
-          <option value="jogging">Jogging</option>
+          <option value="swimming">Swimming</option>
+          <option value="skiing">Skiing</option>
           <option value="cycling">Cycling</option>
         </select>
       </div>
@@ -70,7 +92,8 @@ function AddRecord() {
       <div className="contents">
         <label className="w-20">Calories</label>
         <input
-          required
+          className="cursor-not-allowed"
+          readOnly
           type="number"
           id="calories"
           value={formData.calories}

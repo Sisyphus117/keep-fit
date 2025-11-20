@@ -33,6 +33,12 @@ function MainNav() {
           Diet
         </Link>
       </li>
+      <li className="flex items-center gap-3">
+        <PiBowlSteam />
+        <Link className="text-lg" to="/user">
+          User
+        </Link>
+      </li>
     </nav>
   );
 }
