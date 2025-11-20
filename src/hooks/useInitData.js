@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { loadStaticData } from "../utils/loadStaticData";
-import { read } from "../fitness/recordsSlice";
-import { init } from "../user/userSlice";
+import { read } from "../slices/recordsSlice";
+import { init } from "../slices/userSlice";
 
 export const useInitData = function () {
   const dispatch = useDispatch();

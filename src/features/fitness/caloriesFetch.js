@@ -1,4 +1,4 @@
-import { CALORIES_BURNED_API_KEY } from "../utils/constants";
+import { CALORIES_BURNED_API_KEY } from "../../utils/constants";
 
 export const fetchCaloriesBurnedData = async function ({
   activity,

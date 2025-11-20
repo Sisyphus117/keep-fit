@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
-import Button from "../ui/Button";
+import { useEffect, useRef, useState } from "react";
+import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "./recordsSlice";
+import { add } from "../../slices/recordsSlice";
 import { fetchCaloriesBurnedData } from "./caloriesFetch";
+import { useDebounce } from "../../hooks/useDebounce";
+import { DEBOUNCE_DELAY } from "../../utils/constants";
 
 function AddRecord() {
   const dispatch = useDispatch();
   const { weight } = useSelector((store) => store.user);
+  const abortGetCalories = useRef(null);
 
   const [formData, setFormData] = useState({
     item: "",
@@ -14,23 +17,28 @@ function AddRecord() {
     calories: 0,
   });
 
-  useEffect(() => {
-    const { item, duration } = formData;
+  const getCalories = async function (params) {
+    const { item, duration, weight } = params;
     if (!item || duration === 0) {
       return;
     }
-    const getCalorise = async function () {
-      const result = await fetchCaloriesBurnedData({
-        activity: item,
-        weight,
-        duration,
-      });
-      return result;
-    };
-
-    getCalorise().then((calories) =>
+    if (abortGetCalories?.current) {
+      abortGetCalories.current.abort();
+    }
+    abortGetCalories.current = new AbortController();
+    fetchCaloriesBurnedData({
+      activity: item,
+      weight,
+      duration,
+    }).then((calories) =>
       setFormData((prev) => ({ ...prev, calories: calories })),
     );
+  };
+
+  const deboncedGetCalories = useDebounce(getCalories, DEBOUNCE_DELAY);
+
+  useEffect(() => {
+    deboncedGetCalories({ weight, ...formData });
   }, [formData.duration, formData.item, weight]);
 
   function handleChange(e) {

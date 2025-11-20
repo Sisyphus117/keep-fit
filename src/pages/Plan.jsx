@@ -1,4 +1,4 @@
-import PlanForm from "../plan/PlanForm";
+import PlanForm from "../features/plan/PlanForm";
 
 function Plan() {
   return (

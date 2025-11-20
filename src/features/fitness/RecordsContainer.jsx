@@ -1,5 +1,5 @@
 import RecordLine from "./RecordLine";
-import Selector from "../ui/Selector";
+import Selector from "../../ui/Selector";
 import { useSelector } from "react-redux";
 
 function RecordsContainer() {

@@ -3,6 +3,7 @@ import {
   PiClockClockwise,
   PiLightningA,
   PiMetaLogo,
+  PiUserCircleThin,
 } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
@@ -34,7 +35,7 @@ function MainNav() {
         </Link>
       </li>
       <li className="flex items-center gap-3">
-        <PiBowlSteam />
+        <PiUserCircleThin />
         <Link className="text-lg" to="/user">
           User
         </Link>

@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import AddRecord from "../fitness/AddRecord";
-import RecordsContainer from "../fitness/RecordsContainer";
+import AddRecord from "../features/fitness/AddRecord";
+import RecordsContainer from "../features/fitness/RecordsContainer";
 import { inSameDate } from "../utils/DateConvert";
 
 function Fitness() {

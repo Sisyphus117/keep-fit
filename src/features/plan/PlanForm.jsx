@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../ui/Button";
+import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
-import { set } from "./planSlice";
+import { set } from "../../slices/planSlice";
 
 function PlanForm() {
   const dispatch = useDispatch();

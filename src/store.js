@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import planReducer from "./plan/planSlice";
-import recordSortReducer from "./fitness/recordSortSlice";
-import recordsReducer from "./fitness/recordsSlice";
-import userReducer from "./user/userSlice";
+import planReducer from "./slices/planSlice";
+import recordSortReducer from "./slices/recordSortSlice";
+import recordsReducer from "./slices/recordsSlice";
+import userReducer from "./slices/userSlice";
 
 export default configureStore({
   reducer: {

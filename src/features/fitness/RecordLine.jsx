@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import Button from "../ui/Button";
-import { isoToLocale } from "../utils/DateConvert";
-import { remove } from "./recordsSlice";
+import Button from "../../ui/Button";
+import { isoToLocale } from "../../utils/DateConvert";
+import { remove } from "../../slices/recordsSlice";
 
 function RecordLine({ record }) {
   const dispatch = useDispatch();

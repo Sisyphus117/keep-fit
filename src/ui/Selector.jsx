@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { set } from "../fitness/recordSortSlice";
+import { set } from "../slices/recordSortSlice";
 
 function Selector({ options }) {
   const dispatch = useDispatch();
