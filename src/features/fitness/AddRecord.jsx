@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "../../slices/recordsSlice";
 import { fetchCaloriesBurnedData } from "./caloriesFetch";
 import { useDebounce } from "../../hooks/useDebounce";
 import { DEBOUNCE_DELAY } from "../../utils/constants";
+import useFormData from "../../hooks/useFormData";
 
 function AddRecord() {
   const dispatch = useDispatch();
   const { weight } = useSelector((store) => store.user);
   const abortGetCalories = useRef(null);
-
-  const [formData, setFormData] = useState({
+  const { formData, setFormData, clearForm, handleChange } = useFormData({
     item: "",
     duration: 0,
     calories: 0,
@@ -40,22 +40,6 @@ function AddRecord() {
   useEffect(() => {
     deboncedGetCalories({ weight, ...formData });
   }, [formData.duration, formData.item, weight]);
-
-  function handleChange(e) {
-    const { id, value } = e.target;
-    if (!isNaN(+value) && +value < 0) {
-      return;
-    }
-    setFormData((prev) => ({ ...prev, [id]: value }));
-  }
-
-  function clearForm() {
-    setFormData({
-      item: "",
-      duration: 0,
-      calories: 0,
-    });
-  }
 
   function handleSubmit(e) {
     e.preventDefault();

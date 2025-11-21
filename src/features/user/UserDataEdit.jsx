@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../slices/userSlice";
 import Button from "../../ui/Button";
+import useFormData from "../../hooks/useFormData";
 
 function UserDataEdit({ onClose }) {
   const { name, gender, age, height, weight } = useSelector(
     (store) => store.user,
   );
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const { formData, setFormData } = useFormData({
     name,
     gender,
     age,

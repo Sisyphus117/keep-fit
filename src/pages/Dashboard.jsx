@@ -1,13 +1,15 @@
-import { Link } from "react-router-dom";
-import Spinner from "../ui/components/Spinner";
+import useAuth from "../hooks/useAuth";
 
 function DashBoard() {
+  const { authenticated } = useAuth();
   return (
     <div>
       <h1 className="text-yellow-500">Dashboard </h1>
-      <p> Here is a content</p>
-      <Link to="/diet">Diet</Link>
-      <Spinner />
+      {authenticated ? (
+        <p>Welcome, user!</p>
+      ) : (
+        <p>Please login to try more functions</p>
+      )}
     </div>
   );
 }

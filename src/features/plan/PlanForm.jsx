@@ -1,26 +1,16 @@
-import { useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
 import { set } from "../../slices/planSlice";
+import useFormData from "../../hooks/useFormData";
 
 function PlanForm() {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const { formData, handleChange, clearForm } = useFormData({
     items: "",
     startDate: "",
     duration: "",
   });
-  function handleChange(e) {
-    const { id, value } = e.target;
-    setFormData((prev) => ({ ...prev, [id]: value }));
-  }
-  function clearForm() {
-    setFormData({
-      items: "",
-      startDate: "",
-      duration: "",
-    });
-  }
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(set(formData));
