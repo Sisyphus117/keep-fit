@@ -86,8 +86,6 @@ function AddRecord() {
           <option value="skiing">Skiing</option>
           <option value="cycling">Cycling</option>
         </select>
-      </div>
-      <div className="contents">
         <label className="w-20">Duration</label>
         <input
           required
@@ -95,9 +93,7 @@ function AddRecord() {
           id="duration"
           value={formData.duration}
           onChange={handleChange}
-        ></input>
-      </div>
-      <div className="contents">
+        />
         <label className="w-20">Calories</label>
         <input
           className="cursor-not-allowed"
@@ -106,7 +102,7 @@ function AddRecord() {
           id="calories"
           value={formData.calories}
           onChange={handleChange}
-        ></input>
+        />
       </div>
       <div className="col-span-full flex justify-end">
         <Button type="submit">Submit</Button>

@@ -19,6 +19,13 @@
   select:focus {
     @apply border-blue-500 ring-1 ring-blue-500;
   }
+  input[readonly],
+  textarea[readonly],
+  select[readonly] {
+    @apply cursor-not-allowed border-zinc-600 bg-zinc-600 text-zinc-100;
+    pointer-events: none;
+    user-select: none;
+  }
 }
 
 :root {

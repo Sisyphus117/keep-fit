@@ -39,9 +39,7 @@ function PlanForm() {
           id="items"
           value={formData.items}
           onChange={handleChange}
-        ></input>
-      </div>
-      <div className="contents">
+        />
         <label className="w-20">Start Date</label>
         <input
           required
@@ -49,9 +47,7 @@ function PlanForm() {
           id="startDate"
           value={formData.startDate}
           onChange={handleChange}
-        ></input>
-      </div>
-      <div className="contents">
+        />
         <label className="w-20">Duration</label>
         <input
           required
@@ -59,7 +55,7 @@ function PlanForm() {
           id="duration"
           value={formData.duration}
           onChange={handleChange}
-        ></input>
+        />
       </div>
       <div className="col-span-full flex justify-end">
         <Button type="submit">Submit</Button>

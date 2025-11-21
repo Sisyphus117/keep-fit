@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Button from "../Button";
 
 function Modal({ children, onClose }) {
   useEffect(() => {
@@ -11,6 +10,7 @@ function Modal({ children, onClose }) {
     document.addEventListener("keydown", onEscPressed);
     return () => document.removeEventListener("keydown", onEscPressed);
   }, [onClose]);
+
   return (
     <div
       onClick={onClose}
@@ -18,10 +18,9 @@ function Modal({ children, onClose }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-zinc-700 p-8 shadow-xl transition-all duration-500 dark:bg-gray-900"
+        className="fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-zinc-600 p-8 shadow-xl transition-all duration-500 dark:bg-gray-900"
       >
         {children}
-        <Button onClick={onClose}>Close</Button>
       </div>
     </div>
   );

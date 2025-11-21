@@ -24,6 +24,7 @@ const recordsData = [
 ];
 const userData = {
   name: "sisyphus",
+  gender: "Male",
   age: 18,
   height: 169,
   weight: 67,

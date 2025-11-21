@@ -12,14 +12,21 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     init(state, action) {
-      const { name, age, height, weight } = action.payload;
-      state.name = name;
-      state.age = age;
-      state.height = height;
-      state.weight = weight;
+      //init data,no junk
+      Object.assign(state, action.payload);
+    },
+    update(state, action) {
+      //defensive
+      // const { name, age, height, weight } = action.payload;
+      // if (name !== undefined) state.name = name;
+      // if (age !== undefined) state.age = age;
+      // if (height !== undefined) state.height = height;
+      // if (weight !== undefined) state.weight = weight;
+      //test
+      Object.assign(state, action.payload);
     },
   },
 });
 
-export const { init } = userSlice.actions;
+export const { init, update } = userSlice.actions;
 export default userSlice.reducer;
