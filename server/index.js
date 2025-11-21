@@ -1,24 +1,18 @@
 import express from "express";
 import cors from "cors";
-import { PrismaClient } from "@prisma/client";
+import userInfoRoutes from "./routes/userInfoRoutes.js";
+import usersRoutes from "./routes/usersRoutes.js";
+import workoutsRoutes from "./routers/workoutsRoutes.js";
 
 const app = express();
-const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/workouts", async (req, res) => {
-  const data = await prisma.workout.findMany();
-  res.json(data);
-});
+app.use("/userinfo", userInfoRoutes);
+app.use("/users", usersRoutes);
+app.use("/workouts", workoutsRoutes);
 
-app.post("/workouts", async (req, res) => {
-  const { name, reps } = req.body;
-  const newWorkout = await prisma.workout.create({
-    data: { name, reps },
-  });
-  res.json(newWorkout);
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
 });
-
-app.listen(3001, () => console.log("Server running on http://localhost:3001"));
