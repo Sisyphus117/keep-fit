@@ -1,9 +1,13 @@
-export function userCheckLogin({ email, password }) {
-  if (!email || !password) {
+import { getUserAuthApi } from "../../apis/getUserAuthApi";
+
+export async function userCheckLogin({ email, passwordInput }) {
+  if (!email || !passwordInput) {
     return false;
   }
-  if (email === "root@root.com" && password === "root") {
-    return true;
+  try {
+    const { password } = await getUserAuthApi(email);
+    return password === passwordInput;
+  } catch (err) {
+    console.error(err);
   }
-  return false;
 }

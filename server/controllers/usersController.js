@@ -1,18 +1,25 @@
-import { PrismaClient } from "@prisma/client";
+import { Users } from "../models/index.js";
 
-const prisma = new PrismaClient();
-
-export async function getUser(req, res) {
-  const userId = parseInt(req.params.id);
-
+export async function getUser(req, res, next) {
   try {
-    const data = await prisma.users.findUnique({
+    const userId = parseInt(req.params.id);
+    const data = await Users.findOne({
       where: { id: userId },
     });
-
     res.json(data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    next(error);
+  }
+}
+
+export async function getUserByEmail(req, res, next) {
+  try {
+    const email = req.params.email;
+    const data = await Users.findOne({
+      where: { email },
+    });
+    res.json(data);
+  } catch (error) {
+    next(error);
   }
 }

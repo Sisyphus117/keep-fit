@@ -14,9 +14,13 @@ function LoginForm() {
     password: "root",
   });
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (userCheckLogin(formData)) {
+    const check = await userCheckLogin({
+      ...formData,
+      passwordInput: formData.password,
+    });
+    if (check) {
       dispatch(login());
       navigate("/");
     }

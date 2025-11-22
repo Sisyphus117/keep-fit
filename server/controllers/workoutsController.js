@@ -1,18 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import Workouts from "../models/index.js";
 
-const prisma = new PrismaClient();
-
-export async function getWorkouts(req, res) {
-  const userId = parseInt(req.params.id);
-
+export async function getWorkouts(req, res, next) {
   try {
-    const data = await prisma.workouts.findUnique({
+    const userId = parseInt(req.params.id);
+    const data = await Workouts.findAll({
       where: { id: userId },
     });
-
     res.json(data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    next(error);
   }
 }

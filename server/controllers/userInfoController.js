@@ -1,18 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import { UserInfo } from "../models/index.js";
 
-const prisma = new PrismaClient();
-
-export async function getUserInfo(req, res) {
-  const userId = parseInt(req.params.id);
-
+export async function getUserInfo(req, res, next) {
   try {
-    const data = await prisma.user_info.findUnique({
-      where: { user_id: userId },
+    const userId = parseInt(req.params.id);
+    const data = await UserInfo.findAll({
+      where: { id: userId },
     });
-
     res.json(data);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    next(error);
   }
 }
