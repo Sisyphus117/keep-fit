@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { getUserInfo } from "../controllers/userInfoController.js";
+import {
+  getUserInfo,
+  updateUserInfo,
+} from "../controllers/userInfoController.js";
 
 const router = Router();
 
-router.get("/:id", getUserInfo);
+router.get("/id/:id", getUserInfo);
+router.put("/id/:id", updateUserInfo);
 
 export default router;

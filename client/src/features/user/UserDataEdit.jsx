@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../slices/userSlice";
 import Button from "../../ui/Button";
 import useFormData from "../../hooks/useFormData";
+import { updateUserInfoApi } from "../../apis/getUserInfoApi";
+import useAuth from "../../hooks/useAuth";
 
 function UserDataEdit({ onClose }) {
   const { name, gender, age, height, weight } = useSelector(
     (store) => store.user,
   );
   const dispatch = useDispatch();
+  const { id } = useAuth();
   const { formData, setFormData } = useFormData({
     name,
     gender,
@@ -25,8 +28,9 @@ function UserDataEdit({ onClose }) {
     }
     setFormData((prev) => ({ ...prev, [id]: value }));
   }
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    await updateUserInfoApi(id, formData);
     dispatch(update(formData));
   }
   return (

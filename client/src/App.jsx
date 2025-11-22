@@ -10,12 +10,20 @@ import { useInitData } from "./hooks/useInitData";
 import Login from "./pages/Login";
 import PreservedRoute from "./ui/components/PreservedRoute";
 import PageNotFound from "./ui/PageNotFound";
+import useAuth from "./hooks/useAuth";
 
 function App() {
+  const { authenticated, id } = useAuth();
+
   const { initData } = useInitData();
   useEffect(() => {
-    initData();
-  }, []);
+    async function init() {
+      if (authenticated) {
+        await initData(id);
+      }
+    }
+    init();
+  }, [authenticated, initData, id]);
   return (
     <BrowserRouter>
       <AppLayout>

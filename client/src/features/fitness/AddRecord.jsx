@@ -1,14 +1,18 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../slices/recordsSlice";
+import { read } from "../../slices/recordsSlice";
 import { fetchCaloriesBurnedData } from "./caloriesFetch";
 import { useDebounce } from "../../hooks/useDebounce";
 import { DEBOUNCE_DELAY } from "../../utils/constants";
 import useFormData from "../../hooks/useFormData";
+import useAuth from "../../hooks/useAuth";
+import { getWorkoutsApi, insertWorkoutApi } from "../../apis/getWorkoutsApi";
 
 function AddRecord() {
   const dispatch = useDispatch();
+  const [isCalculating, setIsCalculating] = useState(false);
+  const { id: user_id } = useAuth();
   const { weight } = useSelector((store) => store.user);
   const abortGetCalories = useRef(null);
   const { formData, setFormData, clearForm, handleChange } = useFormData({
@@ -17,9 +21,16 @@ function AddRecord() {
     calories: 0,
   });
 
+  const canSubmit =
+    formData.item &&
+    formData.duration > 0 &&
+    formData.calories > 0 &&
+    !isCalculating;
+
   const getCalories = async function (params) {
     const { item, duration, weight } = params;
     if (!item || duration === 0) {
+      setIsCalculating(false);
       return;
     }
     if (abortGetCalories?.current) {
@@ -33,6 +44,7 @@ function AddRecord() {
     }).then((calories) =>
       setFormData((prev) => ({ ...prev, calories: calories })),
     );
+    setIsCalculating(false);
   };
 
   const deboncedGetCalories = useDebounce(getCalories, DEBOUNCE_DELAY);
@@ -41,15 +53,19 @@ function AddRecord() {
     deboncedGetCalories({ weight, ...formData });
   }, [formData.duration, formData.item, weight]);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    if (!canSubmit) return;
+
     const isoStr = new Date().toISOString();
     const submittedData = {
       ...formData,
-      id: isoStr,
-      time: isoStr,
+      date: isoStr,
+      user_id,
     };
-    dispatch(add(submittedData));
+    await insertWorkoutApi(user_id, submittedData);
+    const newWorkouts = await getWorkoutsApi(user_id);
+    dispatch(read(newWorkouts));
     clearForm();
   }
   return (
@@ -89,7 +105,9 @@ function AddRecord() {
         />
       </div>
       <div className="col-span-full flex justify-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={!canSubmit}>
+          {isCalculating ? "Calcing..." : "Submit"}
+        </Button>
       </div>
     </form>
   );

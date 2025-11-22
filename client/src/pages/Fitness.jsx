@@ -7,7 +7,7 @@ function Fitness() {
   const { records } = useSelector((store) => store.records);
 
   const checkedToday = records.some((el) =>
-    inSameDate(el.time, new Date().toISOString()),
+    inSameDate(el.date, new Date().toISOString()),
   );
 
   return (

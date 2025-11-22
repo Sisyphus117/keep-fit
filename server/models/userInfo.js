@@ -19,11 +19,15 @@ const UserInfo = sequelize.define(
         key: "id",
       },
     },
+    name: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
     gender: {
       type: DataTypes.STRING(10),
       allowNull: false,
       validate: {
-        isIn: [["male", "female", "other"]],
+        isIn: [["Male", "Female", "Other"]],
       },
     },
     age: {
@@ -35,11 +39,11 @@ const UserInfo = sequelize.define(
       },
     },
     height: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        min: 0.5,
-        max: 2.5,
+        min: 50,
+        max: 250,
       },
     },
     weight: {

@@ -1,8 +1,14 @@
 import { Router } from "express";
-import { getWorkouts } from "../controllers/workoutsController.js";
+import {
+  deleteWorkout,
+  getWorkouts,
+  insertWorkout,
+} from "../controllers/workoutsController.js";
 
 const router = Router();
 
-router.get("/:id", getWorkouts);
+router.get("/id/:id", getWorkouts);
+router.post("/id/:id", insertWorkout);
+router.delete("/id/:id", deleteWorkout);
 
 export default router;

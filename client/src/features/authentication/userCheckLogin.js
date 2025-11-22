@@ -2,11 +2,11 @@ import { getUserAuthApi } from "../../apis/getUserAuthApi";
 
 export async function userCheckLogin({ email, passwordInput }) {
   if (!email || !passwordInput) {
-    return false;
+    return -1;
   }
   try {
-    const { password } = await getUserAuthApi(email);
-    return password === passwordInput;
+    const { password, id } = await getUserAuthApi(email);
+    return password === passwordInput ? id : -1;
   } catch (err) {
     console.error(err);
   }

@@ -12,7 +12,7 @@ function RecordsContainer() {
     sorted.sort((a, b) => modifier * a.item.localeCompare(b.item));
   }
   if (sortBy === "date") {
-    sorted.sort((a, b) => modifier * a.time.localeCompare(b.time));
+    sorted.sort((a, b) => modifier * a.date.localeCompare(b.date));
   }
 
   return (
