@@ -1,5 +1,5 @@
 function Content({ children }) {
-  return <div className="px-5 py-3">{children}</div>;
+  return <div className="px-7 py-5">{children}</div>;
 }
 
 export default Content;

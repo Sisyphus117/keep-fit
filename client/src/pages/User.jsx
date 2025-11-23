@@ -11,7 +11,7 @@ function User() {
     setIsEditing(false);
   }
   return (
-    <div>
+    <div className="">
       <UserDataDisplay />
       {isEditing && (
         <Modal onClose={handleClose}>

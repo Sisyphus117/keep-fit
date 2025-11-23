@@ -78,7 +78,7 @@ function AddRecord() {
   }
   return (
     <form
-      className="grid grid-cols-[auto_200px] items-center gap-5"
+      className="grid grid-cols-[auto_200px] items-center justify-center gap-5"
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="contents">

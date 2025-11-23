@@ -6,7 +6,7 @@ function UserDataDisplay() {
   );
 
   return (
-    <div>
+    <div className="">
       <ul className="flex items-center gap-5">
         <li className="w-32">Name</li>
         <li className="w-32">{name}</li>

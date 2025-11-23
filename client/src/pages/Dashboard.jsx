@@ -1,3 +1,4 @@
+import WorkoutStatsChart from "../features/dashboard/WorkoutStatsChart";
 import useAuth from "../hooks/useAuth";
 
 function DashBoard() {
@@ -6,7 +7,10 @@ function DashBoard() {
     <div>
       <h1 className="text-yellow-500">Dashboard </h1>
       {authenticated ? (
-        <p>Welcome, user!</p>
+        <>
+          <p>Welcome, user!</p>
+          <WorkoutStatsChart />
+        </>
       ) : (
         <p>Please login to try more functions</p>
       )}

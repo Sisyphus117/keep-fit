@@ -3,11 +3,12 @@
 @tailwind utilities;
 
 /* color zinc */
-
+/* px-7 py-5 */
 @layer base {
   html {
     color: #e4e4e7;
     font-family: "Roboto", sans-serif;
+    /* font-size: 16px; */
   }
   input,
   textarea,
