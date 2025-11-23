@@ -2,19 +2,30 @@ import Button from "../../ui/Button";
 import { useDispatch } from "react-redux";
 import { set } from "../../slices/planSlice";
 import useFormData from "../../hooks/useFormData";
+import { insertPlanApi } from "../../apis/planApi";
+import toast from "react-hot-toast";
+import useAuth from "../../hooks/useAuth";
 
 function PlanForm() {
+  const { id } = useAuth();
   const dispatch = useDispatch();
   const { formData, handleChange, clearForm } = useFormData({
-    items: "",
+    item: "",
     startDate: "",
     duration: "",
   });
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(set(formData));
-    clearForm();
+  async function handleSubmit(e) {
+    try {
+      e.preventDefault();
+      dispatch(set(formData));
+      await insertPlanApi(id, formData);
+      clearForm();
+      toast.success("Goals set successfully");
+    } catch (err) {
+      console.error(err);
+      toast.error(err);
+    }
   }
   return (
     <form
@@ -26,8 +37,8 @@ function PlanForm() {
         <input
           required
           type="text"
-          id="items"
-          value={formData.items}
+          id="item"
+          value={formData.item}
           onChange={handleChange}
         />
         <label className="w-20">Start Date</label>

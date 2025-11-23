@@ -15,19 +15,27 @@ function RecordsContainer() {
     sorted.sort((a, b) => modifier * a.date.localeCompare(b.date));
   }
 
+  const emptyWorkouts = sorted.length === 0;
+
   return (
     <div>
-      <Selector
-        options={[
-          { key: "name-asc", value: "By Name (A-Z)" },
-          { key: "name-desc", value: "By Name (Z-A)" },
-          { key: "date-asc", value: "Latest First" },
-          { key: "date-desc", value: "Newest First" },
-        ]}
-      />
-      {sorted.map((record) => (
-        <RecordLine record={record} key={record.id} />
-      ))}
+      {emptyWorkouts ? (
+        <p>Your workout list is empty, start with adding your workout today</p>
+      ) : (
+        <>
+          <Selector
+            options={[
+              { key: "name-asc", value: "By Name (A-Z)" },
+              { key: "name-desc", value: "By Name (Z-A)" },
+              { key: "date-asc", value: "Latest First" },
+              { key: "date-desc", value: "Newest First" },
+            ]}
+          />
+          {sorted.map((record) => (
+            <RecordLine record={record} key={record.id} />
+          ))}
+        </>
+      )}
     </div>
   );
 }

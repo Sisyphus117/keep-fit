@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import PreservedRoute from "./ui/components/PreservedRoute";
 import PageNotFound from "./ui/PageNotFound";
 import useAuth from "./hooks/useAuth";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { authenticated, id } = useAuth();
@@ -39,6 +40,7 @@ function App() {
           <Route path="*" element={<PageNotFound />}></Route>
         </Routes>
       </AppLayout>
+      <Toaster />
     </BrowserRouter>
   );
 }

@@ -9,7 +9,7 @@ function Button({
   to = "/",
   disabled,
 }) {
-  const baseClasses = `    py-1.5 px-3 rounded focus:outline-none focus:shadow-outline 
+  const baseClasses = `    py-1.5 px-4 rounded focus:outline-none focus:shadow-outline 
     transition-colors duration-200
     ${
       disabled

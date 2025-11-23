@@ -9,6 +9,7 @@ export async function getUserInfoApi(id) {
   if (result === null) {
     throw new Error("Invalid id");
   }
+
   return result;
 }
 
@@ -26,8 +27,6 @@ export async function updateUserInfoApi(id, formData) {
     throw new Error(`Error, status code: ${response.status}`);
   }
   const result = await response.json();
-  if (result === null) {
-    throw new Error("Invalid id");
-  }
+
   return result;
 }

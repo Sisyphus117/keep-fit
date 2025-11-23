@@ -1,4 +1,4 @@
-import { getUserAuthApi } from "../../apis/getUserAuthApi";
+import { getUserAuthApi } from "../../apis/userAuthApi";
 
 export async function userCheckLogin({ email, passwordInput }) {
   if (!email || !passwordInput) {

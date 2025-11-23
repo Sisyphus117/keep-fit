@@ -2,15 +2,26 @@ import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
 import { isoToLocale } from "../../utils/DateConvert";
 import { remove } from "../../slices/recordsSlice";
-import { deleteWorkoutApi } from "../../apis/getWorkoutsApi";
+import { deleteWorkoutApi } from "../../apis/workoutsApi";
+import { useState } from "react";
+import ConfirmDialog from "../../ui/components/ConfirmDialog";
+import toast from "react-hot-toast";
 
 function RecordLine({ record }) {
   const dispatch = useDispatch();
   const { id, item, duration, calories, date } = record;
 
+  const [showConfirm, setShowConfirm] = useState(false);
   async function handleDelete() {
-    await deleteWorkoutApi(id);
-    dispatch(remove(id));
+    try {
+      await deleteWorkoutApi(id);
+      dispatch(remove(id));
+      toast.success("Delete successfully");
+      setShowConfirm(false);
+    } catch (err) {
+      console.error(err);
+      toast.error(err);
+    }
   }
   return (
     <div>
@@ -19,7 +30,14 @@ function RecordLine({ record }) {
         <li className="w-32">{`${duration} min`}</li>
         <li className="w-32">{`${calories} calories`}</li>
         <li className="w-32">{isoToLocale(date)}</li>
-        <Button onClick={handleDelete}>Delete</Button>
+        <Button onClick={() => setShowConfirm(true)}>Delete</Button>
+        {showConfirm && (
+          <ConfirmDialog
+            onClose={() => setShowConfirm(false)}
+            onConfirmed={handleDelete}
+            // confirmText="Are you sure to delete this record?"
+          />
+        )}
       </ul>
     </div>
   );

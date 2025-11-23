@@ -7,7 +7,8 @@ import { useDebounce } from "../../hooks/useDebounce";
 import { DEBOUNCE_DELAY } from "../../utils/constants";
 import useFormData from "../../hooks/useFormData";
 import useAuth from "../../hooks/useAuth";
-import { getWorkoutsApi, insertWorkoutApi } from "../../apis/getWorkoutsApi";
+import { getWorkoutsApi, insertWorkoutApi } from "../../apis/workoutsApi";
+import toast from "react-hot-toast";
 
 function AddRecord() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function AddRecord() {
       setIsCalculating(false);
       return;
     }
+    setIsCalculating(true);
     if (abortGetCalories?.current) {
       abortGetCalories.current.abort();
     }
@@ -54,19 +56,25 @@ function AddRecord() {
   }, [formData.duration, formData.item, weight]);
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    if (!canSubmit) return;
+    try {
+      e.preventDefault();
+      if (!canSubmit) return;
 
-    const isoStr = new Date().toISOString();
-    const submittedData = {
-      ...formData,
-      date: isoStr,
-      user_id,
-    };
-    await insertWorkoutApi(user_id, submittedData);
-    const newWorkouts = await getWorkoutsApi(user_id);
-    dispatch(read(newWorkouts));
-    clearForm();
+      const isoStr = new Date().toISOString();
+      const submittedData = {
+        ...formData,
+        date: isoStr,
+        user_id,
+      };
+      await insertWorkoutApi(user_id, submittedData);
+      const newWorkouts = await getWorkoutsApi(user_id);
+      dispatch(read(newWorkouts));
+      clearForm();
+      toast.success("Successfully added your workout today.");
+    } catch (err) {
+      console.error(err);
+      toast.error(err);
+    }
   }
   return (
     <form

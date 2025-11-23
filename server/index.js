@@ -3,6 +3,7 @@ import cors from "cors";
 import userInfoRoutes from "./routes/userInfoRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import workoutsRoutes from "./routes/workoutsRoutes.js";
+import planRoutes from "./routes/planRoutes.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/userinfo", userInfoRoutes);
 app.use("/users", usersRoutes);
 app.use("/workouts", workoutsRoutes);
+app.use("/plan", planRoutes);
 
 app.use((err, req, res, next) => {
   console.error("err:", err);

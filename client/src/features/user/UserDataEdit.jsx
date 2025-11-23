@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../slices/userSlice";
 import Button from "../../ui/Button";
 import useFormData from "../../hooks/useFormData";
-import { updateUserInfoApi } from "../../apis/getUserInfoApi";
+import { updateUserInfoApi } from "../../apis/userInfoApi";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 function UserDataEdit({ onClose }) {
   const { name, gender, age, height, weight } = useSelector(
@@ -29,9 +30,17 @@ function UserDataEdit({ onClose }) {
     setFormData((prev) => ({ ...prev, [id]: value }));
   }
   async function handleSubmit(e) {
-    e.preventDefault();
-    await updateUserInfoApi(id, formData);
-    dispatch(update(formData));
+    try {
+      e.preventDefault();
+      await updateUserInfoApi(id, formData);
+      dispatch(update(formData));
+      toast.success("Successfully Sumbit the change.");
+    } catch (err) {
+      console.error(err);
+      toast.error(err);
+    } finally {
+      onClose();
+    }
   }
   return (
     <form

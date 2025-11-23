@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  isEmpty: true,
   item: "",
-  startTime: "",
+  startDate: "",
   duration: 0,
 };
 
@@ -11,15 +12,17 @@ const planSlice = createSlice({
   initialState,
   reducers: {
     reset(state) {
+      state.isEmpty = true;
       state.item = "";
-      state.startTime = "";
+      state.startDate = "";
       state.duration = 0;
     },
     set(state, action) {
       const { item, startDate, duration } = action.payload;
       state.item = item;
-      state.startTime = new Date(startDate).toISOString();
+      state.startDate = startDate;
       state.duration = +duration;
+      state.isEmpty = false;
     },
   },
 });

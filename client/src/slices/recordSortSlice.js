@@ -14,10 +14,6 @@ const recordSortSlice = createSlice({
       state.sortOrder = "";
     },
     set(state, action) {
-      if (action.payload === "default") {
-        // return recordSortSlice.caseReducers.reset(state);
-        return reset(state);
-      }
       const [sortBy, sortOrder] = action.payload.split("-");
       state.sortBy = sortBy;
       state.sortOrder = sortOrder;

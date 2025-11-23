@@ -7,7 +7,8 @@ export async function getUserAuthApi(email) {
   }
   const result = await response.json();
   if (result === null) {
-    throw new Error("Invalid Email");
+    throw new Error("Invalid email");
   }
+
   return result;
 }
