@@ -37,7 +37,7 @@ function UserDataEdit({ onClose }) {
       toast.success("Successfully Sumbit the change.");
     } catch (err) {
       console.error(err);
-      toast.error(err);
+      toast.error(err.message);
     } finally {
       onClose();
     }

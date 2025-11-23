@@ -19,10 +19,17 @@ const planSlice = createSlice({
     },
     set(state, action) {
       const { item, startDate, duration } = action.payload;
-      state.item = item;
-      state.startDate = startDate;
-      state.duration = +duration;
-      state.isEmpty = false;
+      if (!item || !startDate || !duration) {
+        state.isEmpty = true;
+        state.item = "";
+        state.startDate = "";
+        state.duration = 0;
+      } else {
+        state.item = item;
+        state.startDate = startDate;
+        state.duration = +duration;
+        state.isEmpty = false;
+      }
     },
   },
 });

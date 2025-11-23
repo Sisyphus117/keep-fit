@@ -24,7 +24,7 @@ function PlanForm() {
       toast.success("Goals set successfully");
     } catch (err) {
       console.error(err);
-      toast.error(err);
+      toast.error(err.message);
     }
   }
   return (

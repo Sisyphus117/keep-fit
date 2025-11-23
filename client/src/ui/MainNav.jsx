@@ -10,36 +10,26 @@ import { Link } from "react-router-dom";
 function MainNav() {
   return (
     <nav className="flex flex-col gap-1 px-3">
-      <li className="flex items-center gap-3">
+      <Link className="flex items-center gap-3" to="/">
         <PiMetaLogo />
-        <Link className="text-lg" to="/">
-          Dashboard
-        </Link>
-      </li>
-      <li className="flex items-center gap-3">
+        <p className="text-xl">Dashboard</p>
+      </Link>
+      <Link className="flex items-center gap-3" to="/plan">
         <PiClockClockwise />
-        <Link className="text-lg" to="/plan">
-          Plan
-        </Link>
-      </li>
-      <li className="flex items-center gap-3">
+        <p className="text-xl">Plan</p>
+      </Link>
+      <Link className="flex items-center gap-3" to="/fitness">
         <PiLightningA />
-        <Link className="text-lg" to="/fitness">
-          Fitness
-        </Link>
-      </li>
-      <li className="flex items-center gap-3">
+        <p className="text-xl">Fitness</p>
+      </Link>
+      <Link className="flex items-center gap-3" to="/diet">
         <PiBowlSteam />
-        <Link className="text-lg" to="/diet">
-          Diet
-        </Link>
-      </li>
-      <li className="flex items-center gap-3">
+        <p className="text-xl">Diet</p>
+      </Link>
+      <Link className="flex items-center gap-3" to="/user">
         <PiUserCircleThin />
-        <Link className="text-lg" to="/user">
-          User
-        </Link>
-      </li>
+        <p className="text-xl">User</p>
+      </Link>
     </nav>
   );
 }

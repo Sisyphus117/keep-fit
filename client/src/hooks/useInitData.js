@@ -20,12 +20,10 @@ export const useInitData = function () {
       ]);
       dispatch(read(recordsData));
       dispatch(init(...userData));
-      if (planData !== null) {
-        dispatch(set(planData));
-      }
+      dispatch(set(planData));
     } catch (err) {
       console.error(err);
-      toast.error(err);
+      toast.error(err.message);
     }
   };
   return { initData };

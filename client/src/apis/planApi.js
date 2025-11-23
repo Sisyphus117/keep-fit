@@ -7,7 +7,7 @@ export async function getPlanApi(id) {
   }
   const result = await response.json();
   if (result === null) {
-    return null;
+    return {};
   }
   return {
     item: result.item,

@@ -18,7 +18,7 @@ function Modal({ children, onClose }) {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-zinc-600 p-8 shadow-xl transition-all duration-500 dark:bg-gray-900"
+        className="fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-zinc-600 px-14 py-10 shadow-xl transition-all duration-500 dark:bg-gray-900"
       >
         {children}
       </div>

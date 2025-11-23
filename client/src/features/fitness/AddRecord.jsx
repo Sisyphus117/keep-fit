@@ -73,7 +73,7 @@ function AddRecord() {
       toast.success("Successfully added your workout today.");
     } catch (err) {
       console.error(err);
-      toast.error(err);
+      toast.error(err.message);
     }
   }
   return (

@@ -20,7 +20,7 @@ function RecordLine({ record }) {
       setShowConfirm(false);
     } catch (err) {
       console.error(err);
-      toast.error(err);
+      toast.error(err.message);
     }
   }
   return (

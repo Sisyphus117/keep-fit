@@ -5,6 +5,7 @@ import { login } from "../../slices/authenticateSlice";
 import { userCheckLogin } from "./userCheckLogin";
 import { useNavigate } from "react-router-dom";
 import useFormData from "../../hooks/useFormData";
+import toast from "react-hot-toast";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -15,16 +16,21 @@ function LoginForm() {
   });
 
   async function handleSubmit(e) {
-    e.preventDefault();
-    const id = await userCheckLogin({
-      ...formData,
-      passwordInput: formData.password,
-    });
-    if (id !== -1) {
-      dispatch(login(id));
-      navigate("/");
+    try {
+      e.preventDefault();
+      const id = await userCheckLogin({
+        ...formData,
+        passwordInput: formData.password,
+      });
+      if (id !== -1) {
+        dispatch(login(id));
+        navigate("/");
+      }
+      clearForm();
+    } catch (err) {
+      console.error(err);
+      toast.error(err.message);
     }
-    clearForm();
   }
   return (
     <div className="flex h-full flex-col items-center gap-4">
