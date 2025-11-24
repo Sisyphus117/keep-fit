@@ -1,17 +1,19 @@
 import { PiClockUser, PiTennisBall } from "react-icons/pi";
 import StatCard from "../../ui/components/StatCard";
 
-function StatCards() {
+function StatCards({ filteredStats }) {
+  const calorise = filteredStats.reduce((sum, cur) => sum + cur.calories, 0);
+  const duration = filteredStats.reduce((sum, cur) => sum + cur.duration, 0);
   return (
-    <div className="flex w-fit gap-10">
+    <div className="ml-12 flex w-fit gap-12">
       <StatCard
-        title={"Title"}
-        value={100}
+        title={"Calorise"}
+        value={calorise}
         icon={<PiTennisBall className="h-8 w-8" />}
       ></StatCard>
       <StatCard
-        title={"Title"}
-        value={100}
+        title={"Duration"}
+        value={duration}
         icon={<PiClockUser className="h-8 w-8" />}
       ></StatCard>
     </div>

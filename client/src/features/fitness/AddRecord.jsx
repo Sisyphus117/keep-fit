@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "../../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { read } from "../../slices/recordsSlice";
-import { fetchCaloriesBurnedData } from "./caloriesFetch";
+import { fetchCaloriesBurnedData } from "../../apis/caloriesFetchApi";
 import { useDebounce } from "../../hooks/useDebounce";
 import { DEBOUNCE_DELAY } from "../../utils/constants";
 import useFormData from "../../hooks/useFormData";
