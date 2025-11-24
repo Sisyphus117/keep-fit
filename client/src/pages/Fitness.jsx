@@ -11,10 +11,15 @@ function Fitness() {
   );
 
   return (
-    <div className="">
-      <h1>Fitness</h1>
-      {checkedToday || <AddRecord />}
-      <RecordsContainer />
+    <div className="flex flex-col items-center">
+      {checkedToday ? (
+        <RecordsContainer />
+      ) : (
+        <div>
+          <h2 className="mb-4">Add your workout today!</h2>
+          <AddRecord />
+        </div>
+      )}
     </div>
   );
 }

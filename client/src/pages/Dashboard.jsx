@@ -1,3 +1,4 @@
+import StatCards from "../features/dashboard/StatCards";
 import WorkoutStatsChart from "../features/dashboard/WorkoutStatsChart";
 import useAuth from "../hooks/useAuth";
 
@@ -9,6 +10,7 @@ function DashBoard() {
       {authenticated ? (
         <>
           <p>Welcome, user!</p>
+          <StatCards />
           <WorkoutStatsChart />
         </>
       ) : (

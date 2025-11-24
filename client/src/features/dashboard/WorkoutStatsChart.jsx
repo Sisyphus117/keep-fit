@@ -52,7 +52,7 @@ function WorkoutStatsChart() {
         orientation="right"
       />
       <Tooltip />
-      <Legend />
+      {/* <Legend /> */}
       <Line
         yAxisId="left"
         type="monotone"
@@ -67,7 +67,6 @@ function WorkoutStatsChart() {
         type="monotone"
         dataKey="duration"
         fill="rgba(136, 132, 216, 0.3)"
-        //    fill="#8884d8"
         stroke="#8884d8"
         name="Duration"
       />

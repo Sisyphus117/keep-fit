@@ -12,7 +12,7 @@ function UserBar() {
     dispatch(logout());
   }
   return (
-    <div className="flex h-full items-center gap-2">
+    <div className="mx-4 flex h-full items-center gap-2">
       {authenticated ? (
         <>
           <img
@@ -21,7 +21,9 @@ function UserBar() {
             alt="User Avatar"
           />
           <h1 className="mr-2">{name}</h1>
-          <Button onClick={handleLogout}>Log Out</Button>
+          <Button color="danger" onClick={handleLogout}>
+            Log Out
+          </Button>
         </>
       ) : (
         <Button isLink={true} to={"/login"}>

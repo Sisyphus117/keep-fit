@@ -18,23 +18,28 @@ function RecordsContainer() {
   const emptyWorkouts = sorted.length === 0;
 
   return (
-    <div>
+    <div className="flex w-fit flex-col">
       {emptyWorkouts ? (
         <p>Your workout list is empty, start with adding your workout today</p>
       ) : (
-        <>
-          <Selector
-            options={[
-              { key: "name-asc", value: "By Name (A-Z)" },
-              { key: "name-desc", value: "By Name (Z-A)" },
-              { key: "date-asc", value: "Latest First" },
-              { key: "date-desc", value: "Newest First" },
-            ]}
-          />
-          {sorted.map((record) => (
-            <RecordLine record={record} key={record.id} />
-          ))}
-        </>
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between">
+            <p>Your workouts</p>
+            <Selector
+              options={[
+                { key: "name-asc", value: "By Name (A-Z)" },
+                { key: "name-desc", value: "By Name (Z-A)" },
+                { key: "date-asc", value: "Latest First" },
+                { key: "date-desc", value: "Newest First" },
+              ]}
+            />
+          </div>
+          <div>
+            {sorted.map((record) => (
+              <RecordLine record={record} key={record.id} />
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

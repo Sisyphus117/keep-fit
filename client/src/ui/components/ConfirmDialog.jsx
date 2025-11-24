@@ -8,11 +8,15 @@ function ConfirmDialog({
 }) {
   return (
     <Modal onClose={onClose}>
-      <h1 className="mb-2 text-xl">! Attention</h1>
-      <p className="">{confirmText}</p>
-      <div className="mt-4 flex justify-between">
-        <Button onClick={onClose}>No</Button>
-        <Button onClick={onConfirmed}>Yes</Button>
+      <div className="flex flex-col justify-center">
+        <h1 className="mb-3 text-xl">! Attention</h1>
+        <p className="flex-grow-1 min-w-64">{confirmText}</p>
+        <div className="mt-8 flex justify-between">
+          <Button onClick={onClose}>No</Button>
+          <Button color="danger" onClick={onConfirmed}>
+            Yes
+          </Button>
+        </div>
       </div>
     </Modal>
   );

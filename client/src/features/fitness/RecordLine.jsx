@@ -6,6 +6,7 @@ import { deleteWorkoutApi } from "../../apis/workoutsApi";
 import { useState } from "react";
 import ConfirmDialog from "../../ui/components/ConfirmDialog";
 import toast from "react-hot-toast";
+import ItemContainer from "../../ui/components/ItemContainer";
 
 function RecordLine({ record }) {
   const dispatch = useDispatch();
@@ -24,22 +25,24 @@ function RecordLine({ record }) {
     }
   }
   return (
-    <div>
-      <ul className="flex items-center gap-5">
-        <li className="w-32">{item}</li>
-        <li className="w-32">{`${duration} min`}</li>
-        <li className="w-32">{`${calories} calories`}</li>
-        <li className="w-32">{isoToLocale(date)}</li>
-        <Button onClick={() => setShowConfirm(true)}>Delete</Button>
-        {showConfirm && (
-          <ConfirmDialog
-            onClose={() => setShowConfirm(false)}
-            onConfirmed={handleDelete}
-            // confirmText="Are you sure to delete this record?"
-          />
-        )}
+    <ItemContainer>
+      <ul className="flex items-center gap-2">
+        <li className="w-20">{item}</li>
+        <li className="w-16">{`${duration} min`}</li>
+        <li className="w-24">{`${calories} calories`}</li>
+        <li className="w-20">{isoToLocale(date)}</li>
+        <Button size="sm" color="danger" onClick={() => setShowConfirm(true)}>
+          Delete
+        </Button>
       </ul>
-    </div>
+      {showConfirm && (
+        <ConfirmDialog
+          onClose={() => setShowConfirm(false)}
+          onConfirmed={handleDelete}
+          confirmText="Are you sure to delete this record?"
+        />
+      )}
+    </ItemContainer>
   );
 }
 

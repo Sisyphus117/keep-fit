@@ -8,14 +8,19 @@ function Button({
   isLink = false,
   to = "/",
   disabled,
+  size = "md",
+  color = "normal",
 }) {
-  const baseClasses = `    py-1.5 px-4 rounded focus:outline-none focus:shadow-outline 
+  const baseClasses = `py-1.5 px-4 rounded focus:outline-none focus:shadow-outline 
     transition-colors duration-200
     ${
       disabled
         ? "bg-gray-300 text-gray-500 cursor-not-allowed opacity-60"
         : "bg-zinc-500 text-zinc-200 hover:bg-zinc-700 cursor-pointer"
-    }`;
+    }
+    ${size === "sm" && "py-1 px-2 text-sm"}
+    ${color === "danger" && "bg-red-600 hover:bg-red-800"}
+    `;
   const combinedClasses = baseClasses + " " + className;
   if (isLink) {
     return (
