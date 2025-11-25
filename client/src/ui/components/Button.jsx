@@ -16,10 +16,10 @@ function Button({
     ${
       disabled
         ? "bg-gray-300 text-gray-500 cursor-not-allowed opacity-60"
-        : "bg-zinc-500 text-zinc-200 hover:bg-zinc-700 cursor-pointer"
+        : "cursor-pointer"
     }
     ${size === "sm" && "py-1 px-2 text-sm"}
-    ${color === "danger" && "bg-red-600 hover:bg-red-800"}
+    ${color === "danger" ? "bg-red hover:bg-red-dark" : "bg-primary-darker hover:bg-primary-darkest"}
     `;
   const combinedClasses = baseClasses + " " + className;
   if (isLink) {

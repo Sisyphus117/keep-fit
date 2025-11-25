@@ -2,9 +2,17 @@ import { useSelector } from "react-redux";
 import StatCards from "./StatCards";
 import WorkoutStatsChart from "./WorkoutStatsChart";
 import { isAfter } from "../../utils/DateConvert";
+import Selector from "../../ui/components/Selector";
+import { useState } from "react";
 
-function Stats({ dateRange = "weekly" }) {
+function Stats() {
+  const [dateRange, setDateRange] = useState("ever");
   const { records } = useSelector((store) => store.records);
+
+  function handleChange(e) {
+    const range = e.target.value;
+    setDateRange(range);
+  }
 
   let startDate = new Date();
   startDate.setHours(0, 0, 0, 0);
@@ -20,9 +28,20 @@ function Stats({ dateRange = "weekly" }) {
   filtered.sort((a, b) => a.date.localeCompare(b.date));
 
   return (
-    <div className="flex flex-col justify-center gap-7">
-      <StatCards filteredStats={filtered} />
-      <WorkoutStatsChart filteredStats={filtered} />
+    <div>
+      <Selector
+        onChange={handleChange}
+        options={[
+          { key: "ever", value: "Ever" },
+          { key: "monthly", value: "Monthly" },
+          { key: "weekly", value: "Weekly" },
+        ]}
+      />
+      <div className="flex flex-col justify-center gap-7">
+        <StatCards filteredStats={filtered} />
+
+        <WorkoutStatsChart filteredStats={filtered} />
+      </div>
     </div>
   );
 }

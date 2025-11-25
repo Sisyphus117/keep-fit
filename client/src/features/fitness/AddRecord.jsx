@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Button from "../../ui/Button";
+import Button from "../../ui/components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { read } from "../../slices/recordsSlice";
 import { fetchCaloriesBurnedData } from "../../apis/caloriesFetchApi";

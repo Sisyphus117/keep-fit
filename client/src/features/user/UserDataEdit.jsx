@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../slices/userSlice";
-import Button from "../../ui/Button";
+import Button from "../../ui/components/Button";
 import useFormData from "../../hooks/useFormData";
 import { updateUserInfoApi } from "../../apis/userInfoApi";
 import useAuth from "../../hooks/useAuth";

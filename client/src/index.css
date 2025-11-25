@@ -6,19 +6,19 @@
 /* px-7 py-5 */
 @layer base {
   html {
-    color: #e4e4e7;
+    color: #000;
     font-family: "Roboto", sans-serif;
     /* font-size: 16px; */
   }
   input,
   textarea,
   select {
-    @apply border-zinc-500 bg-zinc-700 px-2 text-zinc-200;
+    @apply border-primary bg-primary-darker px-2;
   }
   input:focus,
   textarea:focus,
   select:focus {
-    @apply border-blue-500 ring-1 ring-blue-500;
+    @apply border-indigo ring-indigo-dark ring-1;
   }
   input[readonly],
   textarea[readonly],
@@ -30,12 +30,59 @@
 }
 
 :root {
-  --color-brand-100: #fafafa;
-  --color-brand-200: #e4e4e7;
-  --color-brand-300: #d4d4d8;
-  --color-brand-400: #a1a1aa;
-  --color-brand-500: #71717a;
-  --color-brand-600: #52525b;
-  --color-brand-700: #3f3f46;
-  --color-brand-800: #27272a;
+  --color-primary: #f8f8f8;
+  --color-primary-lighter: #fdfcfc;
+  --color-primary-lightest: #fff;
+  --color-primary-darker: #a2a2b1;
+  --color-primary-darkest: #9696a3;
+
+  --color-red: #fa5252;
+  --color-red-light: #ff6b6b;
+  --color-red-dark: #f03e3e;
+
+  --color-pink: #e64980;
+  --color-pink-light: #f06595;
+  --color-pink-dark: #d6336c;
+
+  --color-indigo: #4c6ef5;
+  --color-indigo-light: #5c7cfa;
+  --color-indigo-dark: #4263eb;
+
+  --color-teal: #12b886;
+  --color-teal-light: #20c997;
+  --color-teal-dark: #0ca678;
+
+  --color-yellow: #fab005;
+  --color-yellow-light: #fcc419;
+  --color-yellow-dark: #f59f00;
+}
+
+.dark {
+  color: #fff;
+
+  --color-primary: #676770;
+  --color-primary-lighter: #787881;
+  --color-primary-lightest: #959597;
+  --color-primary-darker: #54545e;
+  --color-primary-darkest: #3a3a41;
+
+  --color-red: #f03e3e;
+  --color-red-light: #fa5252;
+  --color-red-dark: #e03131;
+
+  --color-pink: #d6336c;
+  --color-pink-light: #e64980;
+  --color-pink-dark: #c2255c;
+
+  --color-indigo: #4263eb;
+  --color-indigo-light: #4c6ef5;
+  --color-indigo-dark: #3b5bdb;
+
+  --color-teal: #0ca678;
+  --color-teal-light: #12b886;
+  --color-teal-dark: #099268;
+
+  --color-yellow: #f59f00;
+  --color-yellow-light: #fab005;
+  --color-yellow-dark: #f08c00;
 }

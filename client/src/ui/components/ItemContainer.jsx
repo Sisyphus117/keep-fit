@@ -1,6 +1,6 @@
 function ItemContainer({ children }) {
   return (
-    <div className="mx-auto my-2 justify-between rounded-lg bg-zinc-700 px-4 py-1.5">
+    <div className="bg-primary-darker mx-auto my-2 justify-between rounded-lg px-4 py-1.5">
       {children}
     </div>
   );

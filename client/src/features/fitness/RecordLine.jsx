@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import Button from "../../ui/Button";
+import Button from "../../ui/components/Button";
 import { isoToLocale } from "../../utils/DateConvert";
 import { remove } from "../../slices/recordsSlice";
 import { deleteWorkoutApi } from "../../apis/workoutsApi";
@@ -26,7 +26,7 @@ function RecordLine({ record }) {
   }
   return (
     <ItemContainer>
-      <ul className="flex items-center gap-2">
+      <ul className="flex items-center gap-4">
         <li className="w-20">{item}</li>
         <li className="w-16">{`${duration} min`}</li>
         <li className="w-24">{`${calories} calories`}</li>

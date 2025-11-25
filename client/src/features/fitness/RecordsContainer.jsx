@@ -1,8 +1,18 @@
 import RecordLine from "./RecordLine";
-import Selector from "../../ui/Selector";
-import { useSelector } from "react-redux";
+import Selector from "../../ui/components/Selector";
+import { useDispatch, useSelector } from "react-redux";
+import { reset, set } from "../../slices/recordSortSlice";
 
 function RecordsContainer() {
+  const dispatch = useDispatch();
+  function handleChange(e) {
+    const sort = e.target.value;
+    if (sort === "default") {
+      dispatch(reset());
+    } else {
+      dispatch(set(sort));
+    }
+  }
   const { records } = useSelector((store) => store.records);
 
   let sorted = records.slice();
@@ -26,7 +36,9 @@ function RecordsContainer() {
           <div className="flex items-center justify-between">
             <p>Your workouts</p>
             <Selector
+              onChange={handleChange}
               options={[
+                { key: "default", value: "Default" },
                 { key: "name-asc", value: "By Name (A-Z)" },
                 { key: "name-desc", value: "By Name (Z-A)" },
                 { key: "date-asc", value: "Latest First" },

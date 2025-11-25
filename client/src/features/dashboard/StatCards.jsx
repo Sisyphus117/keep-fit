@@ -8,11 +8,13 @@ function StatCards({ filteredStats }) {
     <div className="ml-12 flex w-fit gap-12">
       <StatCard
         title={"Calorise"}
+        color="calories"
         value={calorise}
         icon={<PiTennisBall className="h-8 w-8" />}
       ></StatCard>
       <StatCard
         title={"Duration"}
+        color="duration"
         value={duration}
         icon={<PiClockUser className="h-8 w-8" />}
       ></StatCard>

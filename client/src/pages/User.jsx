@@ -1,4 +1,4 @@
-import Button from "../ui/Button";
+import Button from "../ui/components/Button";
 import { useState } from "react";
 import Modal from "../ui/components/Modal";
 import UserDataEdit from "../features/user/UserDataEdit";

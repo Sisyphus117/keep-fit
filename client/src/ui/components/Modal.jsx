@@ -14,11 +14,14 @@ function Modal({ children, onClose }) {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-[1000] bg-zinc-900/50 backdrop-blur-sm transition-all duration-500"
+      style={{
+        backgroundColor: "rgba(24, 24, 27, 0.5)",
+      }}
+      className="fixed inset-0 z-[1000] backdrop-blur-sm transition-all duration-500"
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl bg-zinc-600 px-14 py-10 shadow-xl transition-all duration-500 dark:bg-gray-900"
+        className="bg-primary fixed left-1/2 top-1/2 z-[1001] -translate-x-1/2 -translate-y-1/2 rounded-xl px-14 py-10 shadow-xl transition-all duration-500"
       >
         {children}
       </div>

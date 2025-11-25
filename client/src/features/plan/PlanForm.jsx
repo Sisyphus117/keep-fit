@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import Button from "../../ui/components/Button";
 import { useDispatch } from "react-redux";
 import { set } from "../../slices/planSlice";
 import useFormData from "../../hooks/useFormData";

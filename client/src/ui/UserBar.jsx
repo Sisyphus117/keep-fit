@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import Button from "./Button";
+import Button from "./components/Button";
 import { logout } from "../slices/authenticateSlice";
 import useAuth from "../hooks/useAuth";
 
