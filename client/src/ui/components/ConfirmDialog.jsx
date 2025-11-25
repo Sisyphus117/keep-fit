@@ -13,7 +13,7 @@ function ConfirmDialog({
         <p className="flex-grow-1 min-w-64">{confirmText}</p>
         <div className="mt-8 flex justify-between">
           <Button onClick={onClose}>No</Button>
-          <Button color="danger" onClick={onConfirmed}>
+          <Button color="confirm" onClick={onConfirmed}>
             Yes
           </Button>
         </div>

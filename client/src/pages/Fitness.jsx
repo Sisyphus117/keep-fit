@@ -12,14 +12,13 @@ function Fitness() {
 
   return (
     <div className="flex flex-col items-center">
-      {checkedToday ? (
-        <RecordsContainer />
-      ) : (
+      {checkedToday || (
         <div>
           <h2 className="mb-4">Add your workout today!</h2>
           <AddRecord />
         </div>
       )}
+      <RecordsContainer />
     </div>
   );
 }

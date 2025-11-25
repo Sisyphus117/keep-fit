@@ -36,6 +36,31 @@ export default {
           light: "var(--color-yellow-light)",
           dark: "var(--color-yellow-dark)",
         },
+        green: {
+          DEFAULT: "var(--color-green)",
+          light: "var(--color-green-light)",
+          dark: "var(--color-green-dark)",
+        },
+        lime: {
+          DEFAULT: "var(--color-lime)",
+          light: "var(--color-lime-light)",
+          dark: "var(--color-lime-dark)",
+        },
+        cyan: {
+          DEFAULT: "var(--color-cyan)",
+          light: "var(--color-cyan-light)",
+          dark: "var(--color-cyan-dark)",
+        },
+        grape: {
+          DEFAULT: "var(--color-grape)",
+          light: "var(--color-grape-light)",
+          dark: "var(--color-grape-dark)",
+        },
+        violet: {
+          DEFAULT: "var(--color-violet)",
+          light: "var(--color-violet-light)",
+          dark: "var(--color-violet-dark)",
+        },
       },
     },
   },

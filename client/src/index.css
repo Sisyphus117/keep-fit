@@ -23,18 +23,18 @@
   input[readonly],
   textarea[readonly],
   select[readonly] {
-    @apply cursor-not-allowed border-zinc-600 bg-zinc-600 text-zinc-100;
+    @apply bg-primary cursor-not-allowed;
     pointer-events: none;
     user-select: none;
   }
 }
 
 :root {
-  --color-primary: #f8f8f8;
-  --color-primary-lighter: #fdfcfc;
-  --color-primary-lightest: #fff;
-  --color-primary-darker: #a2a2b1;
-  --color-primary-darkest: #9696a3;
+  --color-primary: #e9ecef;
+  --color-primary-lighter: #f1f3f5;
+  --color-primary-lightest: #f1f3f5;
+  --color-primary-darker: #868e96;
+  --color-primary-darkest: #495057;
 
   --color-red: #fa5252;
   --color-red-light: #ff6b6b;
@@ -55,16 +55,36 @@
   --color-yellow: #fab005;
   --color-yellow-light: #fcc419;
   --color-yellow-dark: #f59f00;
+
+  --color-green: #40c057;
+  --color-green-light: #51cf66;
+  --color-green-dark: #37b24d;
+
+  --color-lime: #82c91e;
+  --color-lime-light: #94d82d;
+  --color-lime-dark: #74b816;
+
+  --color-cyan: #15aabf;
+  --color-cyan-light: #22b8cf;
+  --color-cyan-dark: #1098ad;
+
+  --color-grape: #be4bdb;
+  --color-grape-light: #cc5de8;
+  --color-grape-dark: #ae3ec9;
+
+  --color-violet: #7950f2;
+  --color-violet-light: #845ef7;
+  --color-violet-dark: #7048e8;
 }
 
 .dark {
   color: #fff;
 
-  --color-primary: #676770;
-  --color-primary-lighter: #787881;
-  --color-primary-lightest: #959597;
-  --color-primary-darker: #54545e;
-  --color-primary-darkest: #3a3a41;
+  --color-primary: #212529;
+  --color-primary-lighter: #868e96;
+  --color-primary-lightest: #adb5bd;
+  --color-primary-darker: #343a40;
+  --color-primary-darkest: #495057;
 
   --color-red: #f03e3e;
   --color-red-light: #fa5252;
@@ -85,4 +105,24 @@
   --color-yellow: #f59f00;
   --color-yellow-light: #fab005;
   --color-yellow-dark: #f08c00;
+
+  --color-green: #37b24d;
+  --color-green-light: #40c057;
+  --color-green-dark: #2f9e44;
+
+  --color-lime: #74b816;
+  --color-lime-light: #82c91e;
+  --color-lime-dark: #66a80f;
+
+  --color-cyan: #1098ad;
+  --color-cyan-light: #15aabf;
+  --color-cyan-dark: #0c8599;
+
+  --color-grape: #ae3ec9;
+  --color-grape-light: #be4bdb;
+  --color-grape-dark: #9c36b5;
+
+  --color-violet: #7048e8;
+  --color-violet-light: #7950f2;
+  --color-violet-dark: #6741d9;
 }

@@ -103,7 +103,9 @@ function UserDataEdit({ onClose }) {
         <Button type="button" onClick={onClose}>
           Close
         </Button>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" color="confirm">
+          Submit
+        </Button>
       </div>
     </form>
   );

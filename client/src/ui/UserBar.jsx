@@ -26,7 +26,7 @@ function UserBar() {
           </Button>
         </>
       ) : (
-        <Button isLink={true} to={"/login"}>
+        <Button isLink={true} color="normal" to={"/login"}>
           Log In
         </Button>
       )}

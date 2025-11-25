@@ -12,9 +12,19 @@ import PreservedRoute from "./ui/components/PreservedRoute";
 import PageNotFound from "./ui/PageNotFound";
 import useAuth from "./hooks/useAuth";
 import { Toaster } from "react-hot-toast";
+import useDarkMode from "./hooks/useDarkmode";
 
 function App() {
   const { authenticated, id } = useAuth();
+
+  const { isDarkMode } = useDarkMode();
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
 
   const { initData } = useInitData();
   useEffect(() => {

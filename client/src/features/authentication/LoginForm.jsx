@@ -57,7 +57,7 @@ function LoginForm() {
             value={formData.password}
             onChange={handleChange}
           ></input>
-          <Button type="submit" className="mt-7 self-center">
+          <Button type="submit" className="mt-7 self-center" color="confirm">
             Log in
           </Button>
         </div>

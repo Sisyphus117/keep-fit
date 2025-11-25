@@ -7,7 +7,6 @@ function DashBoard() {
   const { authenticated } = useAuth();
   return (
     <div>
-      <h1 className="text-yellow-500">Dashboard </h1>
       {authenticated ? (
         <>
           <p>Welcome, user!</p>
