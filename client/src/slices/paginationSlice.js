@@ -23,8 +23,14 @@ const paginationSlice = createSlice({
         state.curPage = state.curPage + 1;
       }
     },
+    setPage(state, actions) {
+      const page = actions.payload;
+      if (page >= 0 && page < state.totalPages) {
+        state.curPage = page;
+      }
+    },
   },
 });
 
-export const { init, lastPage, nextPage } = paginationSlice.actions;
+export const { init, lastPage, nextPage, setPage } = paginationSlice.actions;
 export default paginationSlice.reducer;

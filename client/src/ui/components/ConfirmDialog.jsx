@@ -1,12 +1,13 @@
 import Button from "./Button";
 import Modal from "./Modal";
+import { createPortal } from "react-dom";
 
 function ConfirmDialog({
   onConfirmed,
   onClose,
   confirmText = "Are you sure to do this?",
 }) {
-  return (
+  return createPortal(
     <Modal onClose={onClose}>
       <div className="flex flex-col justify-center">
         <h1 className="mb-3 text-xl">! Attention</h1>
@@ -18,8 +19,10 @@ function ConfirmDialog({
           </Button>
         </div>
       </div>
-    </Modal>
+    </Modal>,
+    document.body,
   );
+  // return  return dialogContent;
 }
 
 export default ConfirmDialog;

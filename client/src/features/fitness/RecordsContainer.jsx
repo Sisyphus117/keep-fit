@@ -67,10 +67,10 @@ function RecordsContainer() {
             />
           </div>
           <div>
-            <PaginationBar />
             {recordsOnCurrentPage.map((summary) => (
               <RecordSummary summary={summary} key={summary.date} />
             ))}
+            <PaginationBar />
           </div>
         </div>
       )}

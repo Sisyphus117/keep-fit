@@ -28,7 +28,7 @@ function RecordSummary({ summary }) {
         className={`transition-all duration-700 ease-in-out ${
           isOpen
             ? "max-h-[1000px] translate-y-0 opacity-100"
-            : "max-h-0 -translate-y-2 overflow-hidden opacity-0"
+            : "hidden max-h-0 -translate-y-2 opacity-0"
         }`}
       >
         {items.map((item) => (

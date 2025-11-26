@@ -24,15 +24,22 @@ function RecordLine({ record }) {
     }
   }
   return (
-    <ItemContainer>
-      <ul className="flex items-center gap-4">
-        <li className="w-24">{item}</li>
-        <li className="w-28">{`${duration} min`}</li>
-        <li className="w-28">{`${calories} calories`}</li>
-      </ul>
-      <Button size="sm" color="danger" onClick={() => setShowConfirm(true)}>
-        Delete
-      </Button>
+    <>
+      <ItemContainer>
+        <ul className="flex items-center gap-4">
+          <li className="w-24">{item}</li>
+          <li className="w-28">{`${duration} min`}</li>
+          <li className="w-28">{`${calories} calories`}</li>
+        </ul>
+        <Button
+          className={"h-7"}
+          size="sm"
+          color="danger"
+          onClick={() => setShowConfirm(true)}
+        >
+          Delete
+        </Button>
+      </ItemContainer>
       {showConfirm && (
         <ConfirmDialog
           onClose={() => setShowConfirm(false)}
@@ -40,7 +47,7 @@ function RecordLine({ record }) {
           confirmText="Are you sure to delete this record?"
         />
       )}
-    </ItemContainer>
+    </>
   );
 }
 
