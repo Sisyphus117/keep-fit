@@ -3,6 +3,7 @@ import SummaryContainer from "../../ui/components/SummaryContainer";
 import ToggleCollapse from "../../ui/components/ToggleCollapse";
 import { isoToLocale } from "../../utils/dateConvert";
 import RecordLine from "./RecordLine";
+import AnimatedContainer from "../../ui/components/AnimatedContainer";
 
 function RecordSummary({ summary }) {
   const { items, date, calories, duration } = summary;
@@ -24,17 +25,11 @@ function RecordSummary({ summary }) {
         <ToggleCollapse onToggle={handleCollapse} isOpen={isOpen} />
       </SummaryContainer>
 
-      <div
-        className={`transition-all duration-700 ease-in-out ${
-          isOpen
-            ? "max-h-[1000px] translate-y-0 opacity-100"
-            : "hidden max-h-0 -translate-y-2 opacity-0"
-        }`}
-      >
+      <AnimatedContainer isOpen={isOpen}>
         {items.map((item) => (
           <RecordLine record={item} key={item.id} />
         ))}
-      </div>
+      </AnimatedContainer>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import AddRecord from "../features/fitness/AddRecord";
 import RecordsContainer from "../features/fitness/RecordsContainer";
 import { inSameDate } from "../utils/dateConvert";
+import AddRecords from "../features/fitness/AddRecords";
 
 function Fitness() {
   const { records } = useSelector((store) => store.records);
@@ -19,8 +19,8 @@ function Fitness() {
           <h2 className="mb-4">Add your workout today!</h2>
         </div>
       )}
+      <AddRecords />
 
-      <AddRecord />
       <RecordsContainer />
     </div>
   );
