@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import AddRecord from "../features/fitness/AddRecord";
 import RecordsContainer from "../features/fitness/RecordsContainer";
-import { inSameDate } from "../utils/DateConvert";
+import { inSameDate } from "../utils/dateConvert";
 
 function Fitness() {
   const { records } = useSelector((store) => store.records);
@@ -12,12 +12,15 @@ function Fitness() {
 
   return (
     <div className="flex flex-col items-center">
-      {checkedToday || (
+      {checkedToday ? (
+        <p>Add another workout?</p>
+      ) : (
         <div>
           <h2 className="mb-4">Add your workout today!</h2>
-          <AddRecord />
         </div>
       )}
+
+      <AddRecord />
       <RecordsContainer />
     </div>
   );

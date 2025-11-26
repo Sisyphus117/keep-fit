@@ -3,7 +3,7 @@ import UserBar from "./UserBar";
 
 function Header() {
   return (
-    <div className="bg-primary-darker border-primary-darkest flex h-14 items-center justify-between border-b-2 px-4">
+    <div className="flex h-14 items-center justify-between border-b-2 border-primary-darkest bg-primary-darker px-4">
       <Logo disabled={false} />
       <UserBar />
     </div>

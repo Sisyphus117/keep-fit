@@ -6,3 +6,5 @@ export const CALORIES_BURNED_API_KEY =
 export const SERVER_URL = "http://localhost:3000/";
 
 export const DEBOUNCE_DELAY = 3000;
+
+export const PAGE_SIZE = 10;

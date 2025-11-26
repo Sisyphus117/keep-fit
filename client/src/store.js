@@ -4,7 +4,7 @@ import recordSortReducer from "./slices/recordSortSlice";
 import recordsReducer from "./slices/recordsSlice";
 import userReducer from "./slices/userSlice";
 import authenticateReducer from "./slices/authenticateSlice";
-
+import paginationReducer from "./slices/paginationSlice";
 export default configureStore({
   reducer: {
     plan: planReducer,
@@ -12,5 +12,6 @@ export default configureStore({
     records: recordsReducer,
     user: userReducer,
     authenticate: authenticateReducer,
+    pagination: paginationReducer,
   },
 });

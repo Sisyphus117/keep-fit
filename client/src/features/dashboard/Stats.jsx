@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import StatCards from "./StatCards";
 import WorkoutStatsChart from "./WorkoutStatsChart";
-import { isAfter } from "../../utils/DateConvert";
+import { isAfter } from "../../utils/dateConvert";
 import Selector from "../../ui/components/Selector";
 import { useState } from "react";
+import { simpleIntegrateRecords } from "../../utils/recordsDealing";
 
 function Stats() {
   const [dateRange, setDateRange] = useState("ever");
@@ -27,6 +28,8 @@ function Stats() {
   const filtered = records.filter((record) => isAfter(record.date, startDate));
   filtered.sort((a, b) => a.date.localeCompare(b.date));
 
+  const integrated = simpleIntegrateRecords(filtered);
+
   return (
     <div>
       <Selector
@@ -38,9 +41,9 @@ function Stats() {
         ]}
       />
       <div className="flex flex-col justify-center gap-7">
-        <StatCards filteredStats={filtered} />
+        <StatCards filteredStats={integrated} />
 
-        <WorkoutStatsChart filteredStats={filtered} />
+        <WorkoutStatsChart filteredStats={integrated} />
       </div>
     </div>
   );

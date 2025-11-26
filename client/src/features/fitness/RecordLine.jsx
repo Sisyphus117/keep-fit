@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import Button from "../../ui/components/Button";
-import { isoToLocale } from "../../utils/DateConvert";
 import { remove } from "../../slices/recordsSlice";
 import { deleteWorkoutApi } from "../../apis/workoutsApi";
 import { useState } from "react";
@@ -10,7 +9,7 @@ import ItemContainer from "../../ui/components/ItemContainer";
 
 function RecordLine({ record }) {
   const dispatch = useDispatch();
-  const { id, item, duration, calories, date } = record;
+  const { id, item, duration, calories } = record;
 
   const [showConfirm, setShowConfirm] = useState(false);
   async function handleDelete() {
@@ -27,14 +26,13 @@ function RecordLine({ record }) {
   return (
     <ItemContainer>
       <ul className="flex items-center gap-4">
-        <li className="w-20">{item}</li>
-        <li className="w-16">{`${duration} min`}</li>
-        <li className="w-24">{`${calories} calories`}</li>
-        <li className="w-20">{isoToLocale(date)}</li>
-        <Button size="sm" color="danger" onClick={() => setShowConfirm(true)}>
-          Delete
-        </Button>
+        <li className="w-24">{item}</li>
+        <li className="w-28">{`${duration} min`}</li>
+        <li className="w-28">{`${calories} calories`}</li>
       </ul>
+      <Button size="sm" color="danger" onClick={() => setShowConfirm(true)}>
+        Delete
+      </Button>
       {showConfirm && (
         <ConfirmDialog
           onClose={() => setShowConfirm(false)}

@@ -1,14 +1,19 @@
-import RecordLine from "./RecordLine";
 import Selector from "../../ui/components/Selector";
 import { useDispatch, useSelector } from "react-redux";
-import { reset, set } from "../../slices/recordSortSlice";
+import { reset as resetSort, set } from "../../slices/recordSortSlice";
+import RecordSummary from "./RecordSummary";
+import { integrateRecords } from "../../utils/recordsDealing";
+import { PAGE_SIZE } from "../../utils/constants";
+import PaginationBar from "../../ui/components/PaginationBar";
+import { useEffect } from "react";
+import { init as resetPages } from "../../slices/paginationSlice";
 
 function RecordsContainer() {
   const dispatch = useDispatch();
   function handleChange(e) {
     const sort = e.target.value;
     if (sort === "default") {
-      dispatch(reset());
+      dispatch(resetSort());
     } else {
       dispatch(set(sort));
     }
@@ -26,6 +31,21 @@ function RecordsContainer() {
   }
 
   const emptyWorkouts = sorted.length === 0;
+
+  const integrated = integrateRecords(sorted);
+
+  const totalPages = Math.ceil(integrated.length / PAGE_SIZE);
+
+  useEffect(() => {
+    dispatch(resetPages(totalPages));
+  }, [totalPages, dispatch]);
+
+  const { curPage } = useSelector((store) => store.pagination);
+
+  const recordsOnCurrentPage = integrated.slice(
+    curPage * PAGE_SIZE,
+    Math.min(integrated.length, (curPage + 1) * PAGE_SIZE),
+  );
 
   return (
     <div className="flex w-fit flex-col">
@@ -47,8 +67,9 @@ function RecordsContainer() {
             />
           </div>
           <div>
-            {sorted.map((record) => (
-              <RecordLine record={record} key={record.id} />
+            <PaginationBar />
+            {recordsOnCurrentPage.map((summary) => (
+              <RecordSummary summary={summary} key={summary.date} />
             ))}
           </div>
         </div>

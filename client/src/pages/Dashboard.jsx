@@ -1,6 +1,4 @@
-import StatCards from "../features/dashboard/StatCards";
 import Stats from "../features/dashboard/Stats";
-import WorkoutStatsChart from "../features/dashboard/WorkoutStatsChart";
 import useAuth from "../hooks/useAuth";
 
 function DashBoard() {
