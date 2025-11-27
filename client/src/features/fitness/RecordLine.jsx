@@ -6,6 +6,7 @@ import { useState } from "react";
 import ConfirmDialog from "../../ui/components/ConfirmDialog";
 import toast from "react-hot-toast";
 import ItemContainer from "../../ui/components/ItemContainer";
+import { capitalizeFirst } from "../../utils/string";
 
 function RecordLine({ record }) {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function RecordLine({ record }) {
     <>
       <ItemContainer>
         <ul className="flex items-center gap-4">
-          <li className="w-24">{item}</li>
+          <li className="w-24">{capitalizeFirst(item)}</li>
           <li className="w-28">{`${duration} min`}</li>
           <li className="w-28">{`${calories} calories`}</li>
         </ul>

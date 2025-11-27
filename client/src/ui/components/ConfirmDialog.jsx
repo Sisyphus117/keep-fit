@@ -22,7 +22,6 @@ function ConfirmDialog({
     </Modal>,
     document.body,
   );
-  // return  return dialogContent;
 }
 
 export default ConfirmDialog;
