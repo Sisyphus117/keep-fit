@@ -10,7 +10,11 @@ const Users = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-
+    avatar_url: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      defaultValue: null,
+    },
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,

@@ -4,6 +4,7 @@ import userInfoRoutes from "./routes/userInfoRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import workoutsRoutes from "./routes/workoutsRoutes.js";
 import planRoutes from "./routes/planRoutes.js";
+import path from "path";
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use((err, req, res, next) => {
     error: err.message,
   });
 });
+
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

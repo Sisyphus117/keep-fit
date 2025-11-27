@@ -18,12 +18,12 @@ function LoginForm() {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      const id = await userCheckLogin({
+      const { id, password, avatar } = await userCheckLogin({
         ...formData,
         passwordInput: formData.password,
       });
       if (id !== -1) {
-        dispatch(login(id));
+        dispatch(login({ id, password, avatar }));
         navigate("/");
       }
       clearForm();

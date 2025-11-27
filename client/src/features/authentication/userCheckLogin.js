@@ -5,10 +5,10 @@ export async function userCheckLogin({ email, passwordInput }) {
     throw new Error("Please fill in email and password");
   }
 
-  const { password, id } = await getUserAuthApi(email);
+  const { password, id, avatar } = await getUserAuthApi(email);
 
   if (password !== passwordInput) {
     throw new Error("Wrong password");
   }
-  return id;
+  return { id, password, avatar };
 }

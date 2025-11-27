@@ -13,6 +13,7 @@ import PageNotFound from "./ui/PageNotFound";
 import useAuth from "./hooks/useAuth";
 import { Toaster } from "react-hot-toast";
 import useDarkMode from "./hooks/useDarkmode";
+import UserDataEdit from "./features/user/UserDataEdit";
 
 function App() {
   const { authenticated, id } = useAuth();
@@ -39,15 +40,15 @@ function App() {
     <BrowserRouter>
       <AppLayout>
         <Routes>
-          <Route path="/" element={<DashBoard />}></Route>
+          <Route path="/" element={<DashBoard />} />
           <Route element={<PreservedRoute />}>
-            <Route path="/diet" element={<Diet />}></Route>
-            <Route path="/fitness" element={<Fitness />}></Route>
-            <Route path="/plan" element={<Plan />}></Route>
+            <Route path="/diet" element={<Diet />} />
+            <Route path="/fitness" element={<Fitness />} />
+            <Route path="/plan" element={<Plan />} />
             <Route path="/user" element={<User />}></Route>
           </Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="*" element={<PageNotFound />}></Route>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </AppLayout>
       <Toaster />
