@@ -18,12 +18,12 @@
   input:focus,
   textarea:focus,
   select:focus {
-    @apply border-indigo ring-indigo-dark ring-1;
+    @apply border-indigo ring-1 ring-indigo-dark;
   }
   input[readonly],
   textarea[readonly],
   select[readonly] {
-    @apply bg-primary cursor-not-allowed;
+    @apply cursor-not-allowed bg-primary;
     pointer-events: none;
     user-select: none;
   }

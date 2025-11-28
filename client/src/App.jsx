@@ -1,22 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DashBoard from "./pages/Dashboard";
-import Diet from "./pages/Diet";
-import Fitness from "./pages/Fitness";
-import Plan from "./pages/Plan";
 import AppLayout from "./ui/AppLayout";
-import User from "./pages/User";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useInitData } from "./hooks/useInitData";
-import Login from "./pages/Login";
 import PreservedRoute from "./ui/components/PreservedRoute";
 import PageNotFound from "./ui/PageNotFound";
 import useAuth from "./hooks/useAuth";
 import { Toaster } from "react-hot-toast";
 import useDarkMode from "./hooks/useDarkmode";
-import UserDataEdit from "./features/user/UserDataEdit";
+import Spinner from "./ui/components/Spinner";
+
+const DashBoard = lazy(() => import("./pages/Dashboard"));
+const Diet = lazy(() => import("./pages/Diet"));
+const Fitness = lazy(() => import("./pages/Fitness"));
+const Plan = lazy(() => import("./pages/Plan"));
+const User = lazy(() => import("./pages/User"));
+const Login = lazy(() => import("./pages/Login"));
 
 function App() {
   const { authenticated, id } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { isDarkMode } = useDarkMode();
   useEffect(() => {
@@ -31,23 +33,73 @@ function App() {
   useEffect(() => {
     async function init() {
       if (authenticated) {
+        setIsLoading(true);
         await initData(id);
+        setIsLoading(false);
       }
     }
     init();
   }, [authenticated, initData, id]);
+
   return (
     <BrowserRouter>
+      {isLoading && (
+        <AppLayout>
+          <Spinner />
+        </AppLayout>
+      )}
       <AppLayout>
         <Routes>
-          <Route path="/" element={<DashBoard />} />
+          <Route
+            path="/"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <DashBoard />
+              </Suspense>
+            }
+          />
           <Route element={<PreservedRoute />}>
-            <Route path="/diet" element={<Diet />} />
-            <Route path="/fitness" element={<Fitness />} />
-            <Route path="/plan" element={<Plan />} />
-            <Route path="/user" element={<User />}></Route>
+            <Route
+              path="/diet"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <Diet />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/fitness"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <Fitness />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/plan"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <Plan />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/user"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <User />
+                </Suspense>
+              }
+            />
           </Route>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <Login />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </AppLayout>
