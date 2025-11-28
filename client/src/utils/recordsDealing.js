@@ -1,9 +1,9 @@
-// calories: 270;
-// date: "2024-01-25";
-// duration: 55;
-// id: 38;
-// item: "Yoga";
-// user_id: 1;
+/**
+ * integrate records by date, for easily getting one day's records,
+ * single rocords are stored in items field
+ * @param {Record[]} records single records collected form backend
+ * @returns
+ */
 export function integrateRecords(records) {
   const integrated = [];
   for (const record of records) {
@@ -34,6 +34,12 @@ export function integrateRecords(records) {
   return integrated;
 }
 
+/**
+ * integrate records by date, for the case we only interested in integrated data,
+ * no single record data left after filtering
+ * @param {Record[]} records single records collected form backend
+ * @returns
+ */
 export function simpleIntegrateRecords(records) {
   const integrated = [];
   for (const record of records) {

@@ -30,6 +30,10 @@ const userData = {
   weight: 67,
 };
 
+/**
+ * local data for test (OUT OF DATE)
+ * @returns recordsData and userData
+ */
 export const loadStaticData = function () {
   return { recordsData, userData };
 };

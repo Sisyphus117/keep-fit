@@ -1,5 +1,10 @@
 import { SERVER_URL } from "../utils/constants";
 
+/**
+ * get workouts of a user by id
+ * @param {number} id
+ * @returns
+ */
 export async function getWorkoutsApi(id) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}`);
   if (!response.ok) {
@@ -9,6 +14,12 @@ export async function getWorkoutsApi(id) {
 
   return result;
 }
+
+/**
+ * get workouts of today of a user by id
+ * @param {number} id
+ * @returns
+ */
 export async function getWorkoutsTodayApi(id) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}/today`);
   if (!response.ok) {
@@ -19,6 +30,12 @@ export async function getWorkoutsTodayApi(id) {
   return result;
 }
 
+/**
+ * insert a line of workout record to user's records
+ * @param {number} id
+ * @param {object} formData
+ * @returns
+ */
 export async function insertWorkoutApi(id, formData) {
   const postMessage = {
     method: "POST",
@@ -38,6 +55,11 @@ export async function insertWorkoutApi(id, formData) {
   return result;
 }
 
+/**
+ * remove a line of workout from the database
+ * @param {number} id
+ * @returns
+ */
 export async function deleteWorkoutApi(id) {
   const postMessage = {
     method: "DELETE",

@@ -1,5 +1,10 @@
 import { SERVER_URL } from "../utils/constants";
 
+/**
+ * when logging in, get the user auth data by email
+ * @param {email} email
+ * @returns
+ */
 export async function getUserAuthApi(email) {
   const response = await fetch(`${SERVER_URL}users/email/${email}`);
   if (!response.ok) {
@@ -23,6 +28,11 @@ export async function getUserAuthApi(email) {
   return { id, password, avatar };
 }
 
+/**
+ * get the auth data by id
+ * @param {id} id
+ * @returns
+ */
 export async function getUserAuthByIdApi(id) {
   const response = await fetch(`${SERVER_URL}users/id/${id}`);
   if (!response.ok) {
@@ -46,6 +56,12 @@ export async function getUserAuthByIdApi(id) {
   return { id: user_id, password, avatar };
 }
 
+/**
+ * update a user's profile be id
+ * @param {number} id
+ * @param {object} data
+ * @returns
+ */
 export async function updateUserAuthApi(id, data) {
   const { avatar, password } = data;
   const formData = new FormData();

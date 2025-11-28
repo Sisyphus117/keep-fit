@@ -1,6 +1,14 @@
 import { BMR_TOKEN } from "../utils/apiKeys";
 import { BMR_BASR_URL } from "../utils/constants";
 
+/**
+ * compute the BMI by physcial data
+ * @param {number} age
+ * @param {string} gender
+ * @param {number} weight
+ * @param {number} height
+ * @returns {number} BMR in integer
+ */
 export async function BMRFetchApi({
   age = 18,
   gender = "Male",

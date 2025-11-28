@@ -2,6 +2,15 @@ import toast from "react-hot-toast";
 import { CALORIES_BURNED_API_KEY } from "../utils/apiKeys";
 import { CALORIES_BURNED_BASE_URL } from "../utils/constants";
 
+/**
+ * compute the caloires cosumption of a certain activity
+ * @param {Object} params
+ * @param {string} params.activity
+ * @param {number} params.weight
+ * @param {number} params.duration
+ * @param {number} params.id user id
+ * @returns
+ */
 export const fetchCaloriesBurnedData = async function ({
   activity,
   weight = 50,

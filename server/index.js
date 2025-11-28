@@ -17,10 +17,20 @@ app.use(
 
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
+
 app.use("/userinfo", userInfoRoutes);
 app.use("/users", usersRoutes);
 app.use("/workouts", workoutsRoutes);
 app.use("/plan", planRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    error: "route not found",
+    path: req.originalUrl,
+  });
+});
 
 app.use((err, req, res, next) => {
   console.error("err:", err);
@@ -29,8 +39,6 @@ app.use((err, req, res, next) => {
     error: err.message,
   });
 });
-
-app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
