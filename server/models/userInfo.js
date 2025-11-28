@@ -54,6 +54,10 @@ const UserInfo = sequelize.define(
         max: 300,
       },
     },
+    bmr: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
   },
   {
     tableName: "user_info",

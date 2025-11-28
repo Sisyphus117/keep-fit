@@ -9,6 +9,15 @@ export async function getWorkoutsApi(id) {
 
   return result;
 }
+export async function getWorkoutsTodayApi(id) {
+  const response = await fetch(`${SERVER_URL}workouts/id/${id}/today`);
+  if (!response.ok) {
+    throw new Error(`Error, status code: ${response.status}`);
+  }
+  const result = await response.json();
+
+  return result;
+}
 
 export async function insertWorkoutApi(id, formData) {
   const postMessage = {

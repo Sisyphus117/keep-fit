@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
-import { CALORIES_BURNED_API_KEY } from "../utils/constants";
+import { CALORIES_BURNED_API_KEY } from "../utils/apiKeys";
+import { CALORIES_BURNED_BASE_URL } from "../utils/constants";
 
 export const fetchCaloriesBurnedData = async function ({
   activity,
@@ -8,7 +9,7 @@ export const fetchCaloriesBurnedData = async function ({
   id,
 }) {
   try {
-    const url = `https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned?activity=${activity}&weight=${weight}&duration=${duration}`;
+    const url = `${CALORIES_BURNED_BASE_URL}caloriesburned?activity=${activity}&weight=${weight}&duration=${duration}`;
     const options = {
       method: "GET",
       headers: {

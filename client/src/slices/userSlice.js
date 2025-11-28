@@ -5,6 +5,7 @@ const initialState = {
   age: 0,
   height: 0,
   weight: 0,
+  bmr: 0,
 };
 
 const userSlice = createSlice({

@@ -5,6 +5,7 @@ import useFormData from "../../hooks/useFormData";
 import { updateUserInfoApi } from "../../apis/userInfoApi";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import { BMRFetchApi } from "../../apis/BMRFetchApi";
 
 function UserDataEdit({ onClose }) {
   const { name, gender, age, height, weight } = useSelector(
@@ -32,8 +33,9 @@ function UserDataEdit({ onClose }) {
   async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await updateUserInfoApi(id, formData);
-      dispatch(update(formData));
+      const bmr = await BMRFetchApi({ ...formData });
+      await updateUserInfoApi(id, { ...formData, bmr });
+      dispatch(update({ ...formData, bmr }));
       toast.success("Successfully Sumbit the change.");
     } catch (err) {
       console.error(err);
