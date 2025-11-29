@@ -1,7 +1,7 @@
 import { TRANSATION_DURATION } from "../../utils/constants";
 import Button from "./Button";
 
-function SearchBar({ onChange, value, onClick }) {
+function SearchBar({ onChange, value, onClick, searched = false }) {
   return (
     <div className="relative mx-2 my-6 h-5">
       <input
@@ -9,12 +9,13 @@ function SearchBar({ onChange, value, onClick }) {
         type="text"
         onChange={onChange}
         value={value}
+        placeholder="Search your own recipe..."
       />
       <Button
-        className="absolute left-96 top-1/2 -translate-y-1/2"
+        className="absolute left-96 top-1/2 w-20 -translate-y-1/2 text-center"
         onClick={onClick}
       >
-        Search
+        {searched ? "Roll" : "Search"}
       </Button>
     </div>
   );

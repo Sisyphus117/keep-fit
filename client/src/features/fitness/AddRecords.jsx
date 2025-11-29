@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { getWorkoutsApi, insertWorkoutApi } from "../../apis/workoutsApi";
 import { read } from "../../slices/recordsSlice";
+import { validValueFilter } from "../../utils/filters";
 
 function AddRecords() {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,12 +65,14 @@ function AddRecords() {
     abortGetCalories.current = new AbortController();
     const results = await Promise.all(
       updateNeeded.map((record) =>
-        fetchCaloriesBurnedData({
-          id: record.temp_id,
-          activity: record.item,
-          weight,
-          duration: record.duration,
-        }),
+        fetchCaloriesBurnedData(
+          validValueFilter({
+            id: record.temp_id,
+            activity: record.item,
+            weight,
+            duration: record.duration,
+          }),
+        ),
       ),
     );
 
@@ -146,13 +149,18 @@ function AddRecords() {
 
       await Promise.all(
         submittedRecords.map((submittedRecord) =>
-          insertWorkoutApi(user_id, submittedRecord),
+          insertWorkoutApi(submittedRecord),
         ),
       );
       const newWorkouts = await getWorkoutsApi(user_id);
       dispatch(read(newWorkouts));
-      toast.success("Successfully added your workout today.");
       setIsOpen(false);
+      if (!weight) {
+        throw new Error(
+          "Warnning: please fill your personal info to get accurate result",
+        );
+      }
+      toast.success("Successfully added your workout today");
     } catch (err) {
       console.error(err);
       toast.error(err.message);

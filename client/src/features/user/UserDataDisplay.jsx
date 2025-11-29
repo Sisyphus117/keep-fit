@@ -4,7 +4,11 @@ function UserDataDisplay() {
   const { name, gender, age, height, weight } = useSelector(
     (store) => store.user,
   );
-
+  if (!gender || !age || !height || !weight) {
+    return (
+      <p>Please fill your personal info to have better using experience</p>
+    );
+  }
   return (
     <div className="">
       <ul className="flex items-center gap-5">

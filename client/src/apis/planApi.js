@@ -1,7 +1,7 @@
 import { SERVER_URL } from "../utils/constants";
 
 /**
- * get the personal play of the user by id
+ * get the personal plan of the user by id
  * @param {number} id user id
  * @returns
  */
@@ -31,9 +31,9 @@ export async function getPlanApi(id) {
  * @param {string} param.item
  * @returns
  */
-export async function insertPlanApi(id, { item, startDate, duration }) {
+export async function insertPlanApi({ user_id, item, startDate, duration }) {
   const dataRequired = {
-    user_id: id,
+    user_id,
     item,
     duration,
     start_date: startDate,
@@ -45,13 +45,12 @@ export async function insertPlanApi(id, { item, startDate, duration }) {
     },
     body: JSON.stringify(dataRequired),
   };
-  const response = await fetch(`${SERVER_URL}plan/id/${id}`, postMessage);
+  const response = await fetch(`${SERVER_URL}plan/create`, postMessage);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
-  if (!result) {
-    throw new Error("Invalid id");
-  }
+
   return result;
 }

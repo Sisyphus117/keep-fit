@@ -9,6 +9,10 @@ export default function useFormData(initialData) {
     }
     setFormData((prev) => ({ ...prev, [id]: value }));
   }
+  function simpleHandleChange(e) {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  }
   function clearForm() {
     setFormData(initialData);
   }
@@ -16,6 +20,7 @@ export default function useFormData(initialData) {
     formData,
     setFormData,
     handleChange,
+    simpleHandleChange,
     clearForm,
   };
 }

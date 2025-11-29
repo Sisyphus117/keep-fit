@@ -39,3 +39,12 @@ export async function updateUser(req, res, next) {
     next(error);
   }
 }
+
+export async function insertUser(req, res, next) {
+  try {
+    const data = await Users.create(req.body);
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+}

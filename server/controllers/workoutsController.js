@@ -27,7 +27,6 @@ export async function getWorkoutsToday(req, res, next) {
 
 export async function insertWorkout(req, res, next) {
   try {
-    const userId = parseInt(req.params.id);
     const data = await Workouts.create(req.body);
     res.json(data);
   } catch (error) {

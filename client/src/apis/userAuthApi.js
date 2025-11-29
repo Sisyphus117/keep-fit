@@ -8,7 +8,8 @@ import { SERVER_URL } from "../utils/constants";
 export async function getUserAuthApi(email) {
   const response = await fetch(`${SERVER_URL}users/email/${email}`);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
 
   const result = await response.json();
@@ -36,7 +37,8 @@ export async function getUserAuthApi(email) {
 export async function getUserAuthByIdApi(id) {
   const response = await fetch(`${SERVER_URL}users/id/${id}`);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
 
   const result = await response.json();
@@ -45,7 +47,7 @@ export async function getUserAuthByIdApi(id) {
     throw new Error("Invalid email");
   }
 
-  const { id: user_id, password, avatar_url } = result;
+  const { id: user_id, email, password, avatar_url } = result;
   let avatar;
   if (avatar_url === null) {
     avatar = "/default-user.jpg";
@@ -53,7 +55,7 @@ export async function getUserAuthByIdApi(id) {
     avatar = SERVER_URL.slice(0, -1) + avatar_url;
   }
 
-  return { id: user_id, password, avatar };
+  return { id: user_id, email, password, avatar };
 }
 
 /**
@@ -74,12 +76,38 @@ export async function updateUserAuthApi(id, data) {
 
   const postMessage = {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: formData,
   };
   const response = await fetch(`${SERVER_URL}users/id/${id}`, postMessage);
 
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
+  }
+  const result = await response.json();
+
+  return result;
+}
+
+export async function insertUserAuthApi(data) {
+  const { email, password } = data;
+  const postMessage = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password }),
+  };
+  const response = await fetch(`${SERVER_URL}users/create`, postMessage);
+  if (!response.ok) {
+    const { error } = await response.json();
+    if (error === "email must be unique") {
+      throw new Error("Email is occupied, please choose another one");
+    }
+    throw error;
   }
   const result = await response.json();
 

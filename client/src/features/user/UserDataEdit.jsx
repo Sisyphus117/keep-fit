@@ -15,7 +15,7 @@ function UserDataEdit({ onClose }) {
   const { id } = useAuth();
   const { formData, setFormData } = useFormData({
     name,
-    gender,
+    gender: gender || "Male",
     age,
     height,
     weight,

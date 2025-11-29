@@ -10,7 +10,7 @@ import { RECOMMEND_COUNT, SPOONACULAR_BASE_URL } from "../utils/constants";
  * @returns
  */
 export async function recipeItemsFetchApi({ query, minCalories, maxCalories }) {
-  const url = `${SPOONACULAR_BASE_URL}?apiKey=${SPOONACULAR_API_KEY}&query=${query}&minCalories=${minCalories}&maxCalories=${maxCalories}&number=${RECOMMEND_COUNT}`;
+  const url = `${SPOONACULAR_BASE_URL}?apiKey=${SPOONACULAR_API_KEY}&query=${query}&minCalories=${minCalories}&maxCalories=${maxCalories}&number=${RECOMMEND_COUNT}&sort=random`;
   const postMessage = {
     method: "GET",
     headers: {

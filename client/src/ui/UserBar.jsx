@@ -13,25 +13,42 @@ function UserBar() {
     dispatch(logout());
   }
   return (
-    <div className="mx-4 flex h-full items-center gap-2">
+    <>
       {authenticated ? (
-        <Link to="user" className="flex h-full items-center gap-2">
-          <img
-            className="h-[60%] w-auto rounded-full"
-            src={avatar}
-            alt="User Avatar"
-          />
-          <h1 className="mr-2">{name}</h1>
+        <div className="mx-4 flex h-full items-center gap-2">
+          <Link to="user" className="flex h-full items-center gap-2">
+            <img
+              className="h-[60%] w-auto rounded-full"
+              src={avatar}
+              alt="User Avatar"
+            />
+            <h1 className="mr-2">{name}</h1>
+          </Link>
           <Button color="danger" onClick={handleLogout}>
             Log Out
           </Button>
-        </Link>
+        </div>
       ) : (
-        <Button isLink={true} color="normal" to={"/login"}>
-          Log In
-        </Button>
+        <div className="mx-4 flex items-center gap-6">
+          <Button
+            isLink={true}
+            className="w-[90px]"
+            color="normal"
+            to={"/signup"}
+          >
+            Sign up
+          </Button>
+          <Button
+            isLink={true}
+            className="w-[90px]"
+            color="normal"
+            to={"/login"}
+          >
+            Log In
+          </Button>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 

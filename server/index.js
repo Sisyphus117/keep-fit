@@ -5,6 +5,7 @@ import usersRoutes from "./routes/usersRoutes.js";
 import workoutsRoutes from "./routes/workoutsRoutes.js";
 import planRoutes from "./routes/planRoutes.js";
 import path from "path";
+import { ErrorHandler } from "./errorHandler.js";
 
 const app = express();
 
@@ -32,13 +33,7 @@ app.use((req, res) => {
   });
 });
 
-app.use((err, req, res, next) => {
-  console.error("err:", err);
-  res.status(500).json({
-    success: false,
-    error: err.message,
-  });
-});
+app.use((error, req, res, next) => ErrorHandler(error, req, res, next));
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

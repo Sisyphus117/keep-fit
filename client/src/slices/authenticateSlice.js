@@ -7,6 +7,7 @@ const initialState = {
   avatar: "/default-user.jpg",
   // authenticated: false,
   // id: -1,
+  // password: "",
   // avatar: "",
 };
 

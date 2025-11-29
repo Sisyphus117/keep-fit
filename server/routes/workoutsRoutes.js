@@ -10,7 +10,7 @@ const router = Router();
 
 router.get("/id/:id", getWorkouts);
 router.get("/id/:id/today", getWorkoutsToday);
-router.post("/id/:id", insertWorkout);
+router.post("/create", insertWorkout);
 router.delete("/id/:id", deleteWorkout);
 
 export default router;

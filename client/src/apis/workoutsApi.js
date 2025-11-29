@@ -8,7 +8,8 @@ import { SERVER_URL } from "../utils/constants";
 export async function getWorkoutsApi(id) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}`);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
 
@@ -23,7 +24,8 @@ export async function getWorkoutsApi(id) {
 export async function getWorkoutsTodayApi(id) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}/today`);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
 
@@ -36,7 +38,7 @@ export async function getWorkoutsTodayApi(id) {
  * @param {object} formData
  * @returns
  */
-export async function insertWorkoutApi(id, formData) {
+export async function insertWorkoutApi(formData) {
   const postMessage = {
     method: "POST",
     headers: {
@@ -44,9 +46,10 @@ export async function insertWorkoutApi(id, formData) {
     },
     body: JSON.stringify(formData),
   };
-  const response = await fetch(`${SERVER_URL}workouts/id/${id}`, postMessage);
+  const response = await fetch(`${SERVER_URL}workouts/create`, postMessage);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
   if (result === null) {

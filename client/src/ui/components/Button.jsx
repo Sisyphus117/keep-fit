@@ -16,7 +16,7 @@ function Button({
     danger: "bg-red hover:bg-red-dark",
     confirm: "bg-primary-darker hover:bg-primary-darkest",
   };
-  const baseClasses = `py-1.5 px-4 rounded focus:outline-none focus:shadow-outline 
+  const baseClasses = `text-center py-1.5 px-4 rounded focus:outline-none focus:shadow-outline 
     transition-colors duration-200 
     ${
       disabled

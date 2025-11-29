@@ -19,7 +19,7 @@ function PlanForm() {
     try {
       e.preventDefault();
       dispatch(set(formData));
-      await insertPlanApi(id, formData);
+      await insertPlanApi({ ...formData, user_id: id });
       clearForm();
       toast.success("Goals set successfully");
     } catch (err) {

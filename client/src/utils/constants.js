@@ -13,4 +13,8 @@ export const CALORIES_RANGE = 100;
 
 //size
 export const PAGE_SIZE = 6;
-export const RECOMMEND_COUNT = 7;
+export const RECOMMEND_COUNT = 4;
+export const MIN_PASSWORD_LENGTH = 4;
+
+//regex
+export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

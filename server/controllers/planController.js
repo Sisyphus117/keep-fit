@@ -14,10 +14,7 @@ export async function getPlan(req, res, next) {
 
 export async function insertPlan(req, res, next) {
   try {
-    const userId = parseInt(req.params.id);
-    const data = await Plan.create(req.body, {
-      where: { user_id: userId },
-    });
+    const data = await Plan.create(req.body);
     res.json(data);
   } catch (error) {
     next(error);

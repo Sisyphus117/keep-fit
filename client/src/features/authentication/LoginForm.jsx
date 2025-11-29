@@ -47,7 +47,7 @@ function LoginForm() {
             id="email"
             value={formData.email}
             onChange={handleChange}
-          ></input>
+          />
           <label className="mt-2 text-lg">Password</label>
           <input
             className="w-[300px]"
@@ -56,7 +56,7 @@ function LoginForm() {
             id="password"
             value={formData.password}
             onChange={handleChange}
-          ></input>
+          />
           <Button type="submit" className="mt-7 self-center" color="confirm">
             Log in
           </Button>

@@ -15,6 +15,7 @@ const Fitness = lazy(() => import("./pages/Fitness"));
 const Plan = lazy(() => import("./pages/Plan"));
 const User = lazy(() => import("./pages/User"));
 const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
 
 function App() {
   const { authenticated, id } = useAuth();
@@ -97,6 +98,14 @@ function App() {
             element={
               <Suspense fallback={<Spinner />}>
                 <Login />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <Suspense fallback={<Spinner />}>
+                <Signup />
               </Suspense>
             }
           />

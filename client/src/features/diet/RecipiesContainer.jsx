@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { recipeItemsFetchApi } from "../../apis/recipeItemsFetchApi";
 import { useSelector } from "react-redux";
-import { inSameDate } from "../../utils/DateConvert";
-import { CALORIES_RANGE } from "../../utils/constants";
+import { CALORIES_RANGE, RECOMMEND_COUNT } from "../../utils/constants";
 import toast from "react-hot-toast";
 import SearchBar from "../../ui/components/SearchBar";
 import RecipeItem from "./RecipeItem";
+import { validValueFilter } from "../../utils/filters";
+import { inSameDate } from "../../utils/dateConvert";
 
 function RecipiesContainer() {
   const [query, setQuery] = useState("");
+  const [searcged, setSearched] = useState(false);
   const [recipeItems, setRecipeItems] = useState([]);
   const { bmr } = useSelector((store) => store.user);
   const { records } = useSelector((store) => store.records);
@@ -19,26 +21,39 @@ function RecipiesContainer() {
   const total = (bmr + todaySpend) / 6;
   async function searchRecipe() {
     try {
-      const { results: newRecipeItems } = await recipeItemsFetchApi({
-        query,
-        minCalories: total - CALORIES_RANGE,
-        maxCalories: total + CALORIES_RANGE,
-      });
+      const { results: newRecipeItems } = await recipeItemsFetchApi(
+        validValueFilter({
+          query,
+          minCalories: total - CALORIES_RANGE,
+          maxCalories: total + CALORIES_RANGE,
+        }),
+      );
       if (!newRecipeItems) {
         throw new Error("No result found, please try something else");
       }
       setRecipeItems(newRecipeItems);
-      setQuery("");
+      setSearched(true);
+      if (!bmr) {
+        throw new Error(
+          "Warnning: please fill your personal info to get better recommendation",
+        );
+      }
+      toast.success(`${RECOMMEND_COUNT} results fetched`);
     } catch (err) {
       console.error(err);
       toast.error(err.message);
     }
   }
+  function handleChange(e) {
+    setQuery(e.target.value);
+    setSearched(false);
+  }
   return (
     <div className="w-fit">
       <SearchBar
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => handleChange(e)}
         onClick={searchRecipe}
+        searched={searcged}
         value={query}
       />
       <div className="flex flex-col gap-2 px-4 py-3">

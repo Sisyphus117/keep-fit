@@ -23,3 +23,12 @@ export async function updateUserInfo(req, res, next) {
     next(error);
   }
 }
+
+export async function insertUserInfo(req, res, next) {
+  try {
+    const data = await UserInfo.create(req.body);
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+}

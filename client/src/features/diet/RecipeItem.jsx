@@ -9,7 +9,7 @@ function RecipeItem({ item }) {
     e.target.parentElement.style.backgroundColor = "transparent";
   }
   return (
-    <div className="flex min-w-[450px] max-w-[500px] items-center justify-between bg-primary-darker px-5 py-3">
+    <div className="flex min-w-[450px] max-w-[500px] items-center justify-between border-l-8 border-lime-light bg-primary-darker px-5 py-3">
       <div className="flex flex-col justify-between">
         <h2>{title}</h2>
         <ul>

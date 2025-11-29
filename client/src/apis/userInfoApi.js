@@ -8,7 +8,8 @@ import { SERVER_URL } from "../utils/constants";
 export async function getUserInfoApi(id) {
   const response = await fetch(`${SERVER_URL}userinfo/id/${id}`);
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
   if (result === null) {
@@ -35,7 +36,26 @@ export async function updateUserInfoApi(id, formData) {
   const response = await fetch(`${SERVER_URL}userinfo/id/${id}`, postMessage);
 
   if (!response.ok) {
-    throw new Error(`Error, status code: ${response.status}`);
+    const { error } = await response.json();
+    throw error;
+  }
+  const result = await response.json();
+
+  return result;
+}
+
+export async function insertUserInfoApi(data) {
+  const postMessage = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  const response = await fetch(`${SERVER_URL}userinfo/create`, postMessage);
+  if (!response.ok) {
+    const { error } = await response.json();
+    throw error;
   }
   const result = await response.json();
 
