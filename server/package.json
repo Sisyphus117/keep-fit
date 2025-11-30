@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "dev": "tsx index.ts",
+    "build": "tsc",
+    "start": "node dist/index.ts"
   },
   "keywords": [],
   "author": "sisyphus",
@@ -20,7 +21,11 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
     "@types/node": "^24.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.48.0",
+    "@typescript-eslint/parser": "^8.48.0",
     "nodemon": "^3.1.11",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"

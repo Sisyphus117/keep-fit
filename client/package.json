@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest"
@@ -25,8 +25,8 @@
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@eslint/js": "^9.39.1",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.22",
     "babel-jest": "^30.2.0",
@@ -42,7 +42,9 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.7.1",
+    "renamer": "^5.0.2",
     "tailwindcss": "^3.0.0",
+    "typescript": "^5.9.3",
     "vite": "^4.0.0"
   },
   "overrides": {

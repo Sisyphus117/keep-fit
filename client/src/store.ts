@@ -13,5 +13,5 @@ export default configureStore({
     user: userReducer,
     authenticate: authenticateReducer,
     pagination: paginationReducer,
-  },
+  },    
 });
