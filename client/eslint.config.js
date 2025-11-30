@@ -31,3 +31,10 @@ export default defineConfig([
     },
   },
 ]);
+
+module.exports = {
+  plugins: ["jest"],
+  env: {
+    "jest/globals": true,
+  },
+};

@@ -4,10 +4,10 @@ import useFormData from "../../hooks/useFormData";
 import Logo from "../../ui/Logo";
 import Button from "../../ui/components/Button";
 import { useDispatch } from "react-redux";
-import { EMAIL_REGEX, MIN_PASSWORD_LENGTH } from "../../utils/constants";
 import { getUserAuthApi, insertUserAuthApi } from "../../apis/userAuthApi";
 import { login } from "../../slices/authenticateSlice";
 import { insertUserInfoApi } from "../../apis/userInfoApi";
+import { validation } from "./authInputCheck";
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -18,24 +18,6 @@ function SignupForm() {
     password: "",
     confirmPassword: "",
   });
-
-  function validation(formData) {
-    if (formData.username.length === 0) {
-      throw new Error("Username shouldn't be empty");
-    }
-    if (formData.email.length === 0) {
-      throw new Error("Email shouldn't be empty");
-    }
-    if (!EMAIL_REGEX.test(formData.email)) {
-      throw new Error("Please type your email account correctly");
-    }
-    if (formData.password !== formData.confirmPassword) {
-      throw new Error("Please type your password correctly");
-    }
-    if (formData.password.length < MIN_PASSWORD_LENGTH) {
-      throw new Error(`Password should be longer than ${MIN_PASSWORD_LENGTH}`);
-    }
-  }
 
   async function handleSubmit(e) {
     try {
@@ -69,6 +51,7 @@ function SignupForm() {
               id="username"
               value={formData.username}
               onChange={handleChange}
+              data-testid="username-input"
             />
           </div>
           <div className="flex items-center justify-between">
@@ -80,6 +63,7 @@ function SignupForm() {
               id="email"
               value={formData.email}
               onChange={handleChange}
+              data-testid="email-input"
             />
           </div>
           <div className="flex items-center justify-between">
@@ -91,6 +75,7 @@ function SignupForm() {
               id="password"
               value={formData.password}
               onChange={handleChange}
+              data-testid="password-input"
             />
           </div>
           <div className="flex items-center justify-between">
@@ -102,9 +87,15 @@ function SignupForm() {
               id="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
+              data-testid="confirm-password-input"
             />
           </div>
-          <Button type="submit" className="mt-7 self-center" color="confirm">
+          <Button
+            data-testid="submit-button"
+            type="submit"
+            className="mt-7 self-center"
+            color="confirm"
+          >
             Sign up
           </Button>
         </div>

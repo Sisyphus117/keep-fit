@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  authenticated: true,
-  id: 1,
-  password: "root",
-  avatar: "/default-user.jpg",
-  // authenticated: false,
-  // id: -1,
-  // password: "",
-  // avatar: "",
+  // authenticated: true,
+  // id: 1,
+  // password: "root",
+  // avatar: "/default-user.jpg",
+  authenticated: false,
+  id: -1,
+  password: "",
+  avatar: "",
 };
 
 const authenticateSlice = createSlice({

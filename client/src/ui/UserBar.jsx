@@ -35,6 +35,7 @@ function UserBar() {
             className="w-[90px]"
             color="normal"
             to={"/signup"}
+            data-testid="signup-button"
           >
             Sign up
           </Button>
@@ -43,6 +44,7 @@ function UserBar() {
             className="w-[90px]"
             color="normal"
             to={"/login"}
+            data-testid="login-button"
           >
             Log In
           </Button>

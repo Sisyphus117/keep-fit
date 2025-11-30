@@ -10,6 +10,7 @@ function Button({
   disabled,
   size = "md",
   color = "normal",
+  ...props
 }) {
   const colorType = {
     normal: "bg-primary hover:bg-primary-darker border border-primary-darkest",
@@ -28,7 +29,7 @@ function Button({
   const combinedClasses = baseClasses + " " + className;
   if (isLink) {
     return (
-      <Link to={to} className={combinedClasses} disabled={disabled}>
+      <Link to={to} className={combinedClasses} disabled={disabled} {...props}>
         {children}
       </Link>
     );
@@ -39,6 +40,7 @@ function Button({
       type={type}
       onClick={onClick}
       disabled={disabled}
+      {...props}
     >
       {children}
     </button>

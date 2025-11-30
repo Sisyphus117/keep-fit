@@ -2,10 +2,10 @@ import { useDispatch } from "react-redux";
 import Button from "../../ui/components/Button";
 import Logo from "../../ui/Logo";
 import { login } from "../../slices/authenticateSlice";
-import { userCheckLogin } from "./userCheckLogin";
 import { useNavigate } from "react-router-dom";
 import useFormData from "../../hooks/useFormData";
 import toast from "react-hot-toast";
+import { userCheckLogin } from "./authInputCheck";
 
 function LoginForm() {
   const dispatch = useDispatch();
