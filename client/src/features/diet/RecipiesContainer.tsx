@@ -7,13 +7,14 @@ import SearchBar from "../../ui/components/SearchBar";
 import RecipeItem from "./RecipeItem";
 import { validValueFilter } from "../../utils/filters";
 import { inSameDate } from "../../utils/dateConvert";
+import { RootState } from "@/store";
 
 function RecipiesContainer() {
   const [query, setQuery] = useState("");
   const [searcged, setSearched] = useState(false);
   const [recipeItems, setRecipeItems] = useState([]);
-  const { bmr } = useSelector((store) => store.user);
-  const { records } = useSelector((store) => store.records);
+  const { bmr } = useSelector((store: RootState) => store.user);
+  const { records } = useSelector((store: RootState) => store.records);
   const today = new Date();
   const todaySpend = records
     .filter((record) => inSameDate(record.date, today))
@@ -44,14 +45,14 @@ function RecipiesContainer() {
       toast.error(err.message);
     }
   }
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setQuery(e.target.value);
     setSearched(false);
   }
   return (
     <div className="w-fit">
       <SearchBar
-        onChange={(e) => handleChange(e)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
         onClick={searchRecipe}
         searched={searcged}
         value={query}

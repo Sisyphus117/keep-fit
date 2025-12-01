@@ -1,4 +1,10 @@
-function Selector({ id = "", options, onChange, className, ...restProps }) {
+function Selector({
+  id = "",
+  options,
+  onChange,
+  className = "",
+  ...restProps
+}) {
   return (
     <select
       id={id}

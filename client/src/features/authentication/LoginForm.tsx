@@ -15,7 +15,7 @@ function LoginForm() {
     password: "root",
   });
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     try {
       e.preventDefault();
       const { id, password, avatar } = await userCheckLogin({

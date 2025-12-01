@@ -1,6 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { Record } from "@/types/record";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface RecordsState {
+  records: Record[];
+}
+const initialState: RecordsState = {
   records: [],
 };
 
@@ -11,13 +15,13 @@ const recordsSlice = createSlice({
     reset(state) {
       state.records = [];
     },
-    read(state, action) {
+    read(state, action: PayloadAction<Record[]>) {
       state.records = action.payload;
     },
-    add(state, action) {
+    add(state, action: PayloadAction<Record>) {
       state.records.push(action.payload);
     },
-    remove(state, action) {
+    remove(state, action: PayloadAction<number>) {
       const id = action.payload;
       state.records = state.records.filter((obj) => obj.id !== id);
     },

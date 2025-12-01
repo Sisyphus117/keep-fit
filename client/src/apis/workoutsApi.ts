@@ -5,7 +5,7 @@ import { SERVER_URL } from "../utils/constants";
  * @param {number} id
  * @returns
  */
-export async function getWorkoutsApi(id) {
+export async function getWorkoutsApi(id: number) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -21,7 +21,7 @@ export async function getWorkoutsApi(id) {
  * @param {number} id
  * @returns
  */
-export async function getWorkoutsTodayApi(id) {
+export async function getWorkoutsTodayApi(id: number) {
   const response = await fetch(`${SERVER_URL}workouts/id/${id}/today`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -34,7 +34,6 @@ export async function getWorkoutsTodayApi(id) {
 
 /**
  * insert a line of workout record to user's records
- * @param {number} id
  * @param {object} formData
  * @returns
  */
@@ -63,7 +62,7 @@ export async function insertWorkoutApi(formData) {
  * @param {number} id
  * @returns
  */
-export async function deleteWorkoutApi(id) {
+export async function deleteWorkoutApi(id: number) {
   const postMessage = {
     method: "DELETE",
     headers: {

@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface PaginationState {
+  curPage: number;
+  totalPages: number;
+}
+
+const initialState: PaginationState = {
   curPage: 0,
   totalPages: 0,
 };
@@ -9,7 +14,7 @@ const paginationSlice = createSlice({
   name: "pagination",
   initialState,
   reducers: {
-    init(state, actions) {
+    init(state, actions: PayloadAction<number>) {
       state.curPage = 0;
       state.totalPages = actions.payload;
     },
@@ -23,7 +28,7 @@ const paginationSlice = createSlice({
         state.curPage = state.curPage + 1;
       }
     },
-    setPage(state, actions) {
+    setPage(state, actions: PayloadAction<number>) {
       const page = actions.payload;
       if (page >= 0 && page < state.totalPages) {
         state.curPage = page;

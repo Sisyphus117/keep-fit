@@ -15,7 +15,7 @@ function PlanForm() {
     duration: "",
   });
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     try {
       e.preventDefault();
       dispatch(set(formData));

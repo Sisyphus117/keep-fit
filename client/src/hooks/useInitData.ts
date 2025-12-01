@@ -12,7 +12,7 @@ import { useCallback } from "react";
 export const useInitData = function () {
   const dispatch = useDispatch();
   const initData = useCallback(
-    async (id) => {
+    async (id: number) => {
       try {
         // const { recordsData, userData } = loadStaticData();
         const [userData, recordsData, planData] = await Promise.all([

@@ -1,7 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface UserState {
+  name: string;
+  gender: string;
+  age: number;
+  height: number;
+  weight: number;
+  bmr: number;
+}
+const initialState: UserState = {
   name: "",
+  gender: "",
   age: 0,
   height: 0,
   weight: 0,
@@ -12,11 +21,11 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    init(state, action) {
+    init(state, action: PayloadAction<UserState>) {
       //init data,no junk
       Object.assign(state, action.payload);
     },
-    update(state, action) {
+    update(state, action: PayloadAction<UserState>) {
       //defensive
       // const { name, age, height, weight } = action.payload;
       // if (name !== undefined) state.name = name;

@@ -1,4 +1,4 @@
-function ToggleCollapse({ onToggle, className, isOpen }) {
+function ToggleCollapse({ onToggle, className = "", isOpen }) {
   function handleClick() {
     onToggle();
   }

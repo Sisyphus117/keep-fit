@@ -1,5 +1,6 @@
+import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
 export default function useAuth() {
-  return useSelector((store) => store.authenticate);
+  return useSelector((store: RootState) => store.authenticate);
 }

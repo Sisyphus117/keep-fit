@@ -5,10 +5,11 @@ import { isAfter } from "../../utils/dateConvert";
 import Selector from "../../ui/components/Selector";
 import { useState } from "react";
 import { simpleIntegrateRecords } from "../../utils/recordsDealing";
+import { RootState } from "@/store";
 
 function Stats() {
   const [dateRange, setDateRange] = useState("ever");
-  const { records } = useSelector((store) => store.records);
+  const { records } = useSelector((store: RootState) => store.records);
 
   function handleChange(e) {
     const range = e.target.value;

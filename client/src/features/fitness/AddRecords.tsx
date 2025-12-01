@@ -11,13 +11,14 @@ import toast from "react-hot-toast";
 import { getWorkoutsApi, insertWorkoutApi } from "../../apis/workoutsApi";
 import { read } from "../../slices/recordsSlice";
 import { validValueFilter } from "../../utils/filters";
+import { RootState } from "@/store";
 
 function AddRecords() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const [isCalculating, setIsCalculating] = useState(false);
   const { id: user_id } = useAuth();
-  const { weight } = useSelector((store) => store.user);
+  const { weight } = useSelector((store: RootState) => store.user);
   const abortGetCalories = useRef(null);
 
   const [lastFetchRecord, setLastFetchRecord] = useState([]);

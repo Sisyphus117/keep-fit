@@ -6,10 +6,11 @@ import { updateUserInfoApi } from "../../apis/userInfoApi";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { BMRFetchApi } from "../../apis/BMRFetchApi";
+import { RootState } from "@/store";
 
 function UserDataEdit({ onClose }) {
   const { name, gender, age, height, weight } = useSelector(
-    (store) => store.user,
+    (store: RootState) => store.user,
   );
   const dispatch = useDispatch();
   const { id } = useAuth();

@@ -1,4 +1,4 @@
-export const isoToLocale = function (isoString) {
+export const isoToLocale = function (isoString: string) {
   return new Date(isoString).toLocaleDateString();
 };
 /**
@@ -7,7 +7,10 @@ export const isoToLocale = function (isoString) {
  * @param {Date | string} date2
  * @returns {boolean} if so, return true
  */
-export const inSameDate = function (date1, date2) {
+export const inSameDate = function (
+  date1: Date | string,
+  date2: Date | string,
+): boolean {
   const d1 = new Date(date1);
   const d2 = new Date(date2);
   return (
@@ -23,7 +26,7 @@ export const inSameDate = function (date1, date2) {
  * @param {Date | string} date2
  * @returns {boolean} whether date1 is after date2
  */
-export function isAfter(date1, date2) {
+export function isAfter(date1: Date | string, date2: Date | string): boolean {
   const d1 = new Date(date1);
   const d2 = new Date(date2);
   return d1 >= d2;

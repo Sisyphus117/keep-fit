@@ -1,8 +1,9 @@
+import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 
 function UserDataDisplay() {
   const { name, gender, age, height, weight } = useSelector(
-    (store) => store.user,
+    (store: RootState) => store.user,
   );
   if (!gender || !age || !height || !weight) {
     return (

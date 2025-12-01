@@ -1,6 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+export interface AuthState {
+  authenticated: boolean;
+  id: number;
+  password: string;
+  avatar: string;
+}
+
+export interface LoginPayload {
+  id: number;
+  password: string;
+  avatar: string;
+}
+
+const initialState: AuthState = {
   // authenticated: true,
   // id: 1,
   // password: "root",
@@ -15,7 +28,7 @@ const authenticateSlice = createSlice({
   name: "authenticate",
   initialState,
   reducers: {
-    login(state, actions) {
+    login(state, actions: PayloadAction<LoginPayload>) {
       const { id, password, avatar } = actions.payload;
       state.authenticated = true;
       state.id = id;
@@ -28,7 +41,7 @@ const authenticateSlice = createSlice({
       state.password = "";
       state.avatar = "";
     },
-    setAvatar(state, actions) {
+    setAvatar(state, actions: PayloadAction<string>) {
       state.avatar = actions.payload;
     },
   },

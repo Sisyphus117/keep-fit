@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface SortState {
+  sortBy: string;
+  sortOrder: string;
+}
+
+const initialState: SortState = {
   sortBy: "",
   sortOrder: "",
 };
@@ -13,7 +18,7 @@ const recordSortSlice = createSlice({
       state.sortBy = "";
       state.sortOrder = "";
     },
-    set(state, action) {
+    set(state, action: PayloadAction<string>) {
       const [sortBy, sortOrder] = action.payload.split("-");
       state.sortBy = sortBy;
       state.sortOrder = sortOrder;

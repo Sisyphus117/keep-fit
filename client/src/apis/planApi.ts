@@ -1,3 +1,4 @@
+import { EmptyObject, Plan } from "@/types";
 import { SERVER_URL } from "../utils/constants";
 
 /**
@@ -5,7 +6,7 @@ import { SERVER_URL } from "../utils/constants";
  * @param {number} id user id
  * @returns
  */
-export async function getPlanApi(id) {
+export async function getPlanApi(id: number): Promise<Plan | EmptyObject> {
   const response = await fetch(`${SERVER_URL}plan/id/${id}`);
   if (!response.ok) {
     throw new Error(`Error, status code: ${response.status}`);

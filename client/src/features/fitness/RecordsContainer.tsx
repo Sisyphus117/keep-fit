@@ -7,10 +7,11 @@ import { PAGE_SIZE } from "../../utils/constants";
 import PaginationBar from "../../ui/components/PaginationBar";
 import { useEffect } from "react";
 import { init as resetPages } from "../../slices/paginationSlice";
+import { RootState } from "@/store";
 
 function RecordsContainer() {
   const dispatch = useDispatch();
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const sort = e.target.value;
     if (sort === "default") {
       dispatch(resetSort());
@@ -18,10 +19,12 @@ function RecordsContainer() {
       dispatch(set(sort));
     }
   }
-  const { records } = useSelector((store) => store.records);
+  const { records } = useSelector((store: RootState) => store.records);
 
   let sorted = records.slice();
-  const { sortBy, sortOrder } = useSelector((store) => store.recordSort);
+  const { sortBy, sortOrder } = useSelector(
+    (store: RootState) => store.recordSort,
+  );
   const modifier = sortOrder === "asc" ? 1 : -1;
   if (sortBy === "name") {
     sorted.sort((a, b) => modifier * a.item.localeCompare(b.item));
@@ -40,7 +43,7 @@ function RecordsContainer() {
     dispatch(resetPages(totalPages));
   }, [totalPages, dispatch]);
 
-  const { curPage } = useSelector((store) => store.pagination);
+  const { curPage } = useSelector((store: RootState) => store.pagination);
 
   const recordsOnCurrentPage = integrated.slice(
     curPage * PAGE_SIZE,

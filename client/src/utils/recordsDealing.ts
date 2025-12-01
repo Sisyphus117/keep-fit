@@ -1,10 +1,12 @@
+import { BasicSummary, Record, Summary } from "@/types/record";
+
 /**
  * integrate records by date, for easily getting one day's records,
  * single rocords are stored in items field
  * @param {Record[]} records single records collected form backend
  * @returns
  */
-export function integrateRecords(records) {
+export function integrateRecords(records: Record[]): Summary[] {
   const integrated = [];
   for (const record of records) {
     const { id, user_id, date, item, duration, calories } = record;
@@ -40,7 +42,7 @@ export function integrateRecords(records) {
  * @param {Record[]} records single records collected form backend
  * @returns
  */
-export function simpleIntegrateRecords(records) {
+export function simpleIntegrateRecords(records: Record[]): BasicSummary[] {
   const integrated = [];
   for (const record of records) {
     const { user_id, date, duration, calories } = record;

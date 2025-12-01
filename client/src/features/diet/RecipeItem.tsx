@@ -1,13 +1,22 @@
 import { simplifyTitle } from "../../utils/string";
 
+interface Nutrient {
+  name: string;
+  amount: number;
+  unit: number;
+}
+
 function RecipeItem({ item }) {
   const { image, title: originTitle, nutrition } = item;
-  const { nutrients } = nutrition;
+  const { nutrients } = nutrition as { nutrients: Nutrient[] };
   const title = simplifyTitle(originTitle);
-  function handleImgLoadErr(e) {
-    e.target.style.display = "none";
-    e.target.parentElement.style.backgroundColor = "transparent";
+  function handleImgLoadErr(e: React.SyntheticEvent<HTMLImageElement, Event>) {
+    const target = e.target as HTMLImageElement;
+    const parent = target.parentElement as HTMLElement;
+    target.style.display = "none";
+    parent.style.backgroundColor = "transparent";
   }
+
   return (
     <div className="flex min-w-[450px] max-w-[500px] items-center justify-between border-l-8 border-lime-light bg-primary-darker px-5 py-3">
       <div className="flex flex-col justify-between">

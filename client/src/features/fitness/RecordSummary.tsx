@@ -4,8 +4,13 @@ import ToggleCollapse from "../../ui/components/ToggleCollapse";
 import { isoToLocale } from "../../utils/dateConvert";
 import RecordLine from "./RecordLine";
 import AnimatedContainer from "../../ui/components/AnimatedContainer";
+import { Summary } from "@/types/record";
 
-function RecordSummary({ summary }) {
+interface RecordSummaryProps {
+  summary: Summary;
+}
+
+function RecordSummary({ summary }: RecordSummaryProps) {
   const { items, date, calories, duration } = summary;
   const [isOpen, setIsOpen] = useState(false);
   function handleCollapse() {

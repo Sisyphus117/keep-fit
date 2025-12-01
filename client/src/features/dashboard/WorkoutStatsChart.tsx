@@ -22,7 +22,7 @@ export default function WorkoutStatsChart({ filteredStats }) {
       <XAxis
         dataKey="date"
         tick={{ fill: "#000", fontSize: 12 }}
-        tickFormatter={(value) => new Date(value).getDate()}
+        tickFormatter={(value) => new Date(value).getDate().toString()}
       />
       <YAxis
         yAxisId="left"

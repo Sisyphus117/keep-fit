@@ -3,7 +3,7 @@
  * @param {string} str origin string
  * @returns {string}
  */
-export function capitalizeFirst(str) {
+export function capitalizeFirst(str: string): string {
   return str[0].toUpperCase() + str.slice(1);
 }
 
@@ -13,6 +13,6 @@ export function capitalizeFirst(str) {
  * @param {string} str
  * @returns {string}
  */
-export function simplifyTitle(str) {
+export function simplifyTitle(str: string): string {
   return str.split("- ")[0].split("(")[0].trim();
 }

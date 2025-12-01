@@ -5,7 +5,7 @@ import { SERVER_URL } from "../utils/constants";
  * @param {number} id
  * @returns
  */
-export async function getUserInfoApi(id) {
+export async function getUserInfoApi(id: number) {
   const response = await fetch(`${SERVER_URL}userinfo/id/${id}`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -25,7 +25,7 @@ export async function getUserInfoApi(id) {
  * @param {object} formData
  * @returns
  */
-export async function updateUserInfoApi(id, formData) {
+export async function updateUserInfoApi(id: number, formData) {
   const postMessage = {
     method: "PUT",
     headers: {

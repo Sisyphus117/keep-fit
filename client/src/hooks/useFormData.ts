@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useFormData(initialData) {
+export default function useFormData<T>(initialData: T) {
   const [formData, setFormData] = useState(initialData);
   function handleChange(e) {
     const { id, value } = e.target;

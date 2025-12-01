@@ -2,8 +2,14 @@ import { PiClockUser, PiTennisBall } from "react-icons/pi";
 import StatCard from "../../ui/components/StatCard";
 
 function StatCards({ filteredStats }) {
-  const calorise = filteredStats.reduce((sum, cur) => sum + cur.calories, 0);
-  const duration = filteredStats.reduce((sum, cur) => sum + cur.duration, 0);
+  const calorise = filteredStats.reduce(
+    (sum: any, cur: any) => sum + cur.calories,
+    0,
+  );
+  const duration = filteredStats.reduce(
+    (sum: any, cur: any) => sum + cur.duration,
+    0,
+  );
   return (
     <div className="ml-12 flex w-fit gap-12">
       <StatCard

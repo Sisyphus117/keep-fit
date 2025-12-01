@@ -15,15 +15,15 @@ import { capitalizeFirst } from "../../utils/string";
 function AddRecord({ record, onRemove, onFormDataChanged, availableItems }) {
   const { temp_id: id, item, duration, calories } = record;
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { id: key, value } = e.target;
-    if (!isNaN(+value) && value <= 0) {
+    if (!isNaN(+value) && +value <= 0) {
       return;
     }
     onFormDataChanged(id, { key, value });
   }
 
-  const options = availableItems.map((item) => ({
+  const options = availableItems.map((item: string) => ({
     key: item,
     value: capitalizeFirst(item),
   }));

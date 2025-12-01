@@ -6,18 +6,24 @@ import { getUserAuthByIdApi, updateUserAuthApi } from "../../apis/userAuthApi";
 import { useDispatch } from "react-redux";
 import { setAvatar } from "../../slices/authenticateSlice";
 
+interface UserProfileEdit {
+  avatar: File | null;
+  tempUrl: string;
+  oldPassword: string;
+  newPassword: string;
+}
 function UserProfileEdit({ onClose }) {
   const { id, password, avatar: originAvatar } = useAuth();
   const dispatch = useDispatch();
 
-  const { formData, setFormData } = useFormData({
+  const { formData, setFormData } = useFormData<UserProfileEdit>({
     avatar: null,
     tempUrl: originAvatar,
     oldPassword: "",
     newPassword: "",
   });
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { id, value } = e.target;
     if (id === "avatar") {
       const objectUrl = URL.createObjectURL(e.target.files[0]);
@@ -31,7 +37,7 @@ function UserProfileEdit({ onClose }) {
     }
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { avatar, oldPassword, newPassword } = formData;
     try {

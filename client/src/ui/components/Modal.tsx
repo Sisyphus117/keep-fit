@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 
-function Modal({ children, onClose }) {
+interface ModalProps {
+  children?: React.ReactNode;
+  onClose?: () => void;
+}
+function Modal({ children, onClose }: ModalProps) {
   useEffect(() => {
     const onEscPressed = (e) => {
       if (e.key === "Escape") {

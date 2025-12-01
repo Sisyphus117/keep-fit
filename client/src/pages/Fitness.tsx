@@ -2,9 +2,10 @@ import { useSelector } from "react-redux";
 import RecordsContainer from "../features/fitness/RecordsContainer";
 import { inSameDate } from "../utils/dateConvert";
 import AddRecords from "../features/fitness/AddRecords";
+import { RootState } from "@/store";
 
 function Fitness() {
-  const { records } = useSelector((store) => store.records);
+  const { records } = useSelector((store: RootState) => store.records);
 
   const checkedToday = records.some((el) =>
     inSameDate(el.date, new Date().toISOString()),

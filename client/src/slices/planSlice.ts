@@ -1,4 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { EmptyObject, Plan } from "@/types";
+import { isValidPlan } from "@/types/plan";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
+export interface PlanState {
+  isEmpty: boolean;
+  item: string;
+  startDate: string;
+  duration: number;
+}
 
 const initialState = {
   isEmpty: true,
@@ -17,18 +26,18 @@ const planSlice = createSlice({
       state.startDate = "";
       state.duration = 0;
     },
-    set(state, action) {
-      const { item, startDate, duration } = action.payload;
-      if (!item || !startDate || !duration) {
-        state.isEmpty = true;
-        state.item = "";
-        state.startDate = "";
-        state.duration = 0;
-      } else {
+    set(state, action: PayloadAction<Plan | EmptyObject>) {
+      if (isValidPlan(action.payload)) {
+        const { item, startDate, duration } = action.payload;
         state.item = item;
         state.startDate = startDate;
         state.duration = +duration;
         state.isEmpty = false;
+      } else {
+        state.isEmpty = true;
+        state.item = "";
+        state.startDate = "";
+        state.duration = 0;
       }
     },
   },

@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux";
-import { isoToLocale } from "../../utils/DateConvert";
+import { isoToLocale } from "../../utils/dateConvert";
+import { RootState } from "@/store";
 
 function PlanContainer() {
-  const { item, startDate, duration } = useSelector((store) => store.plan);
+  const { item, startDate, duration } = useSelector(
+    (store: RootState) => store.plan,
+  );
 
   return (
     <div>

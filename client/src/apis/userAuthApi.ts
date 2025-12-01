@@ -5,7 +5,7 @@ import { SERVER_URL } from "../utils/constants";
  * @param {email} email
  * @returns
  */
-export async function getUserAuthApi(email) {
+export async function getUserAuthApi(email: string) {
   const response = await fetch(`${SERVER_URL}users/email/${email}`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -34,7 +34,7 @@ export async function getUserAuthApi(email) {
  * @param {id} id
  * @returns
  */
-export async function getUserAuthByIdApi(id) {
+export async function getUserAuthByIdApi(id: number) {
   const response = await fetch(`${SERVER_URL}users/id/${id}`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -64,7 +64,7 @@ export async function getUserAuthByIdApi(id) {
  * @param {object} data
  * @returns
  */
-export async function updateUserAuthApi(id, data) {
+export async function updateUserAuthApi(id: number, data) {
   const { avatar, password } = data;
   const formData = new FormData();
   if (avatar !== null) {
