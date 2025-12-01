@@ -7,6 +7,14 @@ export interface Record {
   date: string;
 }
 
+export interface SubmitRecord {
+  user_id: number;
+  item: string;
+  duration: number;
+  calories: number;
+  date: string;
+}
+
 export interface BasicSummary {
   user_id: number;
   date: string;

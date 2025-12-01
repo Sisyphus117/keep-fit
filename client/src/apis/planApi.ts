@@ -32,7 +32,17 @@ export async function getPlanApi(id: number): Promise<Plan | EmptyObject> {
  * @param {string} param.item
  * @returns
  */
-export async function insertPlanApi({ user_id, item, startDate, duration }) {
+export async function insertPlanApi({
+  user_id,
+  item,
+  startDate,
+  duration,
+}: {
+  user_id: number;
+  item: string;
+  startDate: string;
+  duration: number;
+}) {
   const dataRequired = {
     user_id,
     item,

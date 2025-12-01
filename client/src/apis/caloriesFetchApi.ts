@@ -16,7 +16,12 @@ export const fetchCaloriesBurnedData = async function ({
   weight = 50,
   duration = 60,
   id,
-}) {
+}: {
+  activity: string;
+  weight?: number;
+  duration?: number;
+  id?: number;
+}): Promise<{ id: number; calories: number }> {
   try {
     const url = `${CALORIES_BURNED_BASE_URL}caloriesburned?activity=${activity}&weight=${weight}&duration=${duration}`;
     const options = {

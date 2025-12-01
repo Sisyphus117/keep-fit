@@ -1,6 +1,11 @@
 import { Users } from "../models/index.js";
+import { Request, Response, NextFunction } from "express";
 
-export async function getUser(req, res, next) {
+export async function getUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
   try {
     const userId = parseInt(req.params.id);
     const data = await Users.findOne({
@@ -12,7 +17,11 @@ export async function getUser(req, res, next) {
   }
 }
 
-export async function getUserByEmail(req, res, next) {
+export async function getUserByEmail(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
   try {
     const email = req.params.email;
     const data = await Users.findOne({
@@ -24,7 +33,11 @@ export async function getUserByEmail(req, res, next) {
   }
 }
 
-export async function updateUser(req, res, next) {
+export async function updateUser(
+  req: any,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
   try {
     const userId = parseInt(req.params.id);
     if (req.file) {
@@ -40,7 +53,11 @@ export async function updateUser(req, res, next) {
   }
 }
 
-export async function insertUser(req, res, next) {
+export async function insertUser(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
   try {
     const data = await Users.create(req.body);
     res.json(data);

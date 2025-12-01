@@ -25,7 +25,17 @@ export async function getUserInfoApi(id: number) {
  * @param {object} formData
  * @returns
  */
-export async function updateUserInfoApi(id: number, formData) {
+export async function updateUserInfoApi(
+  id: number,
+  formData: {
+    name?: string;
+    gender?: string;
+    age?: number;
+    height?: number;
+    weight?: number;
+    bmr?: number;
+  },
+) {
   const postMessage = {
     method: "PUT",
     headers: {
@@ -44,7 +54,14 @@ export async function updateUserInfoApi(id: number, formData) {
   return result;
 }
 
-export async function insertUserInfoApi(data) {
+export async function insertUserInfoApi(data: {
+  name: string;
+  gender?: string;
+  age?: number;
+  height?: number;
+  weight?: number;
+  bmr?: number;
+}) {
   const postMessage = {
     method: "POST",
     headers: {

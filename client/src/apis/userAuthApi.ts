@@ -34,7 +34,9 @@ export async function getUserAuthApi(email: string) {
  * @param {id} id
  * @returns
  */
-export async function getUserAuthByIdApi(id: number) {
+export async function getUserAuthByIdApi(
+  id: number,
+): Promise<{ id: number; email: string; password: string; avatar: string }> {
   const response = await fetch(`${SERVER_URL}users/id/${id}`);
   if (!response.ok) {
     const { error } = await response.json();
@@ -48,7 +50,7 @@ export async function getUserAuthByIdApi(id: number) {
   }
 
   const { id: user_id, email, password, avatar_url } = result;
-  let avatar;
+  let avatar: string;
   if (avatar_url === null) {
     avatar = "/default-user.jpg";
   } else {
@@ -64,7 +66,10 @@ export async function getUserAuthByIdApi(id: number) {
  * @param {object} data
  * @returns
  */
-export async function updateUserAuthApi(id: number, data) {
+export async function updateUserAuthApi(
+  id: number,
+  data: { avatar: File | null; password: string | null },
+) {
   const { avatar, password } = data;
   const formData = new FormData();
   if (avatar !== null) {
@@ -92,7 +97,10 @@ export async function updateUserAuthApi(id: number, data) {
   return result;
 }
 
-export async function insertUserAuthApi(data) {
+export async function insertUserAuthApi(data: {
+  email: string;
+  password: string;
+}) {
   const { email, password } = data;
   const postMessage = {
     method: "POST",

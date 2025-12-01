@@ -9,7 +9,15 @@ import { RECOMMEND_COUNT, SPOONACULAR_BASE_URL } from "../utils/constants";
  * @param {number} param.maxCaloriest
  * @returns
  */
-export async function recipeItemsFetchApi({ query, minCalories, maxCalories }) {
+export async function recipeItemsFetchApi({
+  query,
+  minCalories,
+  maxCalories,
+}: {
+  query: string;
+  minCalories: number;
+  maxCalories: number;
+}) {
   const url = `${SPOONACULAR_BASE_URL}?apiKey=${SPOONACULAR_API_KEY}&query=${query}&minCalories=${minCalories}&maxCalories=${maxCalories}&number=${RECOMMEND_COUNT}&sort=random`;
   const postMessage = {
     method: "GET",

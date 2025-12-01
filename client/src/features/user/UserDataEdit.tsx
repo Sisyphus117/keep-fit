@@ -21,17 +21,19 @@ function UserDataEdit({ onClose }) {
     height,
     weight,
   });
-  function handleChange(e) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) {
     const { id, value } = e.target;
-    if (id === "age" && (value < 0 || value > 100)) {
+    if (id === "age" && (+value < 0 || +value > 100)) {
       return;
     }
-    if ((id === "height" || id == "weight") && (value < 0 || value > 300)) {
+    if ((id === "height" || id == "weight") && (+value < 0 || +value > 300)) {
       return;
     }
     setFormData((prev) => ({ ...prev, [id]: value }));
   }
-  async function handleSubmit(e) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     try {
       e.preventDefault();
       const bmr = await BMRFetchApi({ ...formData });

@@ -1,3 +1,4 @@
+import { SubmitRecord } from "@/types/record";
 import { SERVER_URL } from "../utils/constants";
 
 /**
@@ -37,7 +38,7 @@ export async function getWorkoutsTodayApi(id: number) {
  * @param {object} formData
  * @returns
  */
-export async function insertWorkoutApi(formData) {
+export async function insertWorkoutApi(formData: SubmitRecord) {
   const postMessage = {
     method: "POST",
     headers: {

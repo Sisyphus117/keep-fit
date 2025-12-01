@@ -13,6 +13,13 @@ import { read } from "../../slices/recordsSlice";
 import { validValueFilter } from "../../utils/filters";
 import { RootState } from "@/store";
 
+interface FormRecord {
+  temp_id: number;
+  item: string;
+  duration: number;
+  calories: number;
+}
+
 function AddRecords() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
@@ -21,9 +28,9 @@ function AddRecords() {
   const { weight } = useSelector((store: RootState) => store.user);
   const abortGetCalories = useRef(null);
 
-  const [lastFetchRecord, setLastFetchRecord] = useState([]);
+  const [lastFetchRecord, setLastFetchRecord] = useState<FormRecord[]>([]);
 
-  const [records, setRecords] = useState([
+  const [records, setRecords] = useState<FormRecord[]>([
     {
       temp_id: 0,
       item: "",
@@ -50,14 +57,17 @@ function AddRecords() {
     }
   }, [isOpen]);
 
-  function isValidRecord(record) {
+  function isValidRecord(record: FormRecord) {
     return record.item !== "" && record.duration !== 0 && record.calories !== 0;
   }
 
   const canSubmit =
     records.every((record) => isValidRecord(record)) && !isCalculating;
 
-  const getCalories = async function (params) {
+  const getCalories = async function (params: {
+    weight: number;
+    updateNeeded: FormRecord[];
+  }) {
     const { weight, updateNeeded } = params;
     setIsCalculating(true);
     if (abortGetCalories?.current) {
@@ -125,11 +135,11 @@ function AddRecords() {
     setNextId((nextId) => nextId + 1);
   }
 
-  function handleRemoveRecordItem(id) {
+  function handleRemoveRecordItem(id: number) {
     setRecords(records.filter((record) => record.temp_id !== id));
   }
 
-  function handleFormDataChange(id, { key, value }) {
+  function handleFormDataChange(id: number, { key, value }) {
     setRecords([
       ...records.map((record) => {
         return record.temp_id === id ? { ...record, [key]: value } : record;
@@ -137,7 +147,9 @@ function AddRecords() {
     ]);
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> {
     try {
       e.preventDefault();
       if (!canSubmit) return;

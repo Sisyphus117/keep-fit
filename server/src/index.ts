@@ -6,6 +6,7 @@ import workoutsRoutes from "./routes/workoutsRoutes.js";
 import planRoutes from "./routes/planRoutes.js";
 import path from "path";
 import { ErrorHandler } from "./errorHandler.js";
+import { Request, Response, NextFunction } from "express";
 
 const app = express();
 
@@ -33,7 +34,9 @@ app.use((req, res) => {
   });
 });
 
-app.use((error, req, res, next) => ErrorHandler(error, req, res, next));
+app.use((error: Error, req: Request, res: Response, next: NextFunction) =>
+  ErrorHandler(error, req, res, next)
+);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

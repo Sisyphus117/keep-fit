@@ -1,7 +1,14 @@
-export function ErrorHandler(err, req, res, next) {
+import { Request, Response, NextFunction } from "express";
+import { Error } from "sequelize";
+
+export function ErrorHandler(
+  err: Error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   if (err.name === "SequelizeUniqueConstraintError") {
-    const message =
-      err.errors?.[0]?.message || err.message || "Unique Constraint Error";
+    const message = err.message || "Unique Constraint Error";
     return res.status(409).json({
       success: false,
       error: message,
@@ -9,8 +16,7 @@ export function ErrorHandler(err, req, res, next) {
   }
 
   if (err.name === "SequelizeValidationError") {
-    const message =
-      err.errors?.[0]?.message || err.message || "Validation Error";
+    const message = err.message || "Validation Error";
     return res.status(400).json({
       success: false,
       error: message,
@@ -18,21 +24,12 @@ export function ErrorHandler(err, req, res, next) {
   }
 
   if (err.name === "SequelizeForeignKeyConstraintError") {
-    const message =
-      err.errors?.[0]?.message || err.message || "ForeignKey Constraint Error";
+    const message = err.message || "ForeignKey Constraint Error";
     return res.status(400).json({
       success: false,
       error: message,
     });
   }
-
-  if (err.statusCode && err.statusCode < 500) {
-    return res.status(err.statusCode).json({
-      success: false,
-      error: err.message,
-    });
-  }
-
   const isProduction = process.env.NODE_ENV === "production";
   res.status(500).json({
     success: false,

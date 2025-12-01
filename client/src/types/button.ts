@@ -16,27 +16,26 @@ type ButtonColor = "normal" | "confirm" | "danger";
 
 type BaseProps = {
   className?: string;
-  type?: ButtonType;
-  onClick?: any;
   children?: React.ReactNode;
-  isLink?: boolean;
-  to?: string;
-  disabled?: boolean;
   size?: ButtonSize;
   color?: ButtonColor;
+  onClick: any;
 };
 
-export type ButtonProps = BaseProps &
-  (
-    | ({
+export type ButtonProps =
+  | (BaseProps &
+      ({
         isLink?: false;
         //    onClick?: ButtonClickHandler;
         type?: ButtonType;
         disabled?: boolean;
-      } & ButtonHTMLAttributes<HTMLButtonElement>)
-    | ({
+      } & Omit<
+        ButtonHTMLAttributes<HTMLButtonElement>,
+        "onClick" | "type" | "disabled"
+      >))
+  | (BaseProps &
+      ({
         isLink: true;
         to: string;
         //    onClick?: AnchorClickHandler;
-      } & AnchorHTMLAttributes<HTMLAnchorElement>)
-  );
+      } & AnchorHTMLAttributes<HTMLAnchorElement>));

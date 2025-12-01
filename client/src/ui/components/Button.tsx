@@ -13,7 +13,7 @@ function Button({
   size = "md",
   color = "normal",
   ...props
-}: ButtonProps) {
+}: any) {
   const colorType = {
     normal: "bg-primary hover:bg-primary-darker border border-primary-darkest",
     danger: "bg-red hover:bg-red-dark",
